@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutUserComponent } from './Layout/layout-user/layout-user.component';
 import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
+import { CartComponent } from './pages/cart/cart.component';
 // import { HomepagesComponent } from './pages/homepages/homepages.component';
 // import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
 // import { SignupComponent } from './pages/signup/signup.component';
@@ -27,7 +28,7 @@ const routes: Routes = [
       // { path: 'pages-detail/:id', component: PagesDetailComponent },
       // { path: 'category-detail/:id', component: CategoryDetailComponent },
       // { path: 'search', component: ProductsSearchComponent },
-      // { path: 'cart', component: CartComponent },
+      { path: 'cart', component: CartComponent },
 
     ]
   },

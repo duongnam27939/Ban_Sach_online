@@ -11,12 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
 import { LayoutUserComponent } from './Layout/layout-user/layout-user.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutAdminComponent,
-    LayoutUserComponent
+    LayoutUserComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
