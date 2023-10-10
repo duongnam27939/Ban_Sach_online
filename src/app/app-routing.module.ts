@@ -9,6 +9,8 @@ import { CategoryEditComponent } from './pages/category-edit/category-edit.compo
 import { CategoryDetailComponent } from './pages/category-detail/category-detail.component';
 import { HomepagesComponent } from './pages/homepages/homepages.component';
 import { ListUserComponent } from './pages/list-user/list-user.component';
+import { LoginComponent } from './pages/login/login.component';
+import { PagesDetailComponent } from './pages/pages-detail/pages-detail.component';
 // import { HomepagesComponent } from './pages/homepages/homepages.component';
 // import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
 // import { SignupComponent } from './pages/signup/signup.component';
@@ -31,7 +33,7 @@ const routes: Routes = [
   {
     path: '', component: LayoutUserComponent, children: [
       { path: '', component: HomepagesComponent },
-      // { path: 'pages-detail/:id', component: PagesDetailComponent },
+      { path: 'pages-detail/:id', component: PagesDetailComponent },
       { path: 'category-detail/:id', component: CategoryDetailComponent },
       // { path: 'search', component: ProductsSearchComponent },
       { path: 'cart', component: CartComponent },
@@ -51,7 +53,7 @@ const routes: Routes = [
     ]
   },
   // { path: 'sigup', component: SignupComponent },
-  // { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
 ];
 
 @NgModule({

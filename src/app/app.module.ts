@@ -18,6 +18,8 @@ import { CategoryEditComponent } from './pages/category-edit/category-edit.compo
 import { CategoryDetailComponent } from './pages/category-detail/category-detail.component';
 import { HomepagesComponent } from './pages/homepages/homepages.component';
 import { ListUserComponent } from './pages/list-user/list-user.component';
+import { LoginComponent } from './pages/login/login.component';
+import { PagesDetailComponent } from './pages/pages-detail/pages-detail.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { ListUserComponent } from './pages/list-user/list-user.component';
     CategoryEditComponent,
     CategoryDetailComponent,
     HomepagesComponent,
-    ListUserComponent
+    ListUserComponent,
+    LoginComponent,
+    PagesDetailComponent
   ],
   imports: [
     BrowserModule,
