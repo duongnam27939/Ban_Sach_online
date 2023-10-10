@@ -17,6 +17,7 @@ import { CategoryAddComponent } from './pages/category-add/category-add.componen
 import { CategoryEditComponent } from './pages/category-edit/category-edit.component';
 import { CategoryDetailComponent } from './pages/category-detail/category-detail.component';
 import { HomepagesComponent } from './pages/homepages/homepages.component';
+import { ListUserComponent } from './pages/list-user/list-user.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { HomepagesComponent } from './pages/homepages/homepages.component';
     CategoryAddComponent,
     CategoryEditComponent,
     CategoryDetailComponent,
-    HomepagesComponent
+    HomepagesComponent,
+    ListUserComponent
   ],
   imports: [
     BrowserModule,

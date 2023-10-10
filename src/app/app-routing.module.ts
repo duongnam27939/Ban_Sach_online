@@ -8,6 +8,7 @@ import { CategoryAddComponent } from './pages/category-add/category-add.componen
 import { CategoryEditComponent } from './pages/category-edit/category-edit.component';
 import { CategoryDetailComponent } from './pages/category-detail/category-detail.component';
 import { HomepagesComponent } from './pages/homepages/homepages.component';
+import { ListUserComponent } from './pages/list-user/list-user.component';
 // import { HomepagesComponent } from './pages/homepages/homepages.component';
 // import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
 // import { SignupComponent } from './pages/signup/signup.component';
@@ -45,7 +46,7 @@ const routes: Routes = [
       // { path: 'products', component: ProductsComponent },
       // { path: 'products/add', component: ProductsAddComponent },
       // { path: 'products/:id/edit', component: ProductsEditComponent },
-      // { path: 'user', component: ListUserComponent },
+      { path: 'user', component: ListUserComponent },
       // { path: 'user/:id/edit', component: UserEditComponent },
     ]
   },
