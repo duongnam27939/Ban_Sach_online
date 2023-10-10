@@ -14,22 +14,7 @@ import { PagesDetailComponent } from './pages/pages-detail/pages-detail.componen
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductsAddComponent } from './app.module';
 import { ProductsEditComponent } from './pages/products-edit/products-edit.component';
-// import { HomepagesComponent } from './pages/homepages/homepages.component';
-// import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
-// import { SignupComponent } from './pages/signup/signup.component';
-// import { LoginComponent } from './pages/login/login.component';
-// import { CartComponent } from './pages/cart/cart.component';
-// import { CategoryComponent } from './pages/category/category.component';
-// import { CategoryAddComponent } from './pages/category-add/category-add.component';
-// import { CategoryEditComponent } from './pages/category-edit/category-edit.component';
-// import { ProductsComponent } from './pages/products/products.component';
-// import { ProductsAddComponent } from './pages/products-add/products-add.component';
-// import { ProductsEditComponent } from './pages/products-edit/products-edit.component';
-// import { ListUserComponent } from './pages/list-user/list-user.component';
-// import { UserEditComponent } from './pages/user-edit/user-edit.component';
-// import { PagesDetailComponent } from './pages/pages-detail/pages-detail.component';
-// import { CategoryDetailComponent } from './pages/category-detail/category-detail.component';
-// import { ProductsSearchComponent } from './pages/products-search/products-search.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 
 const routes: Routes = [
@@ -55,7 +40,7 @@ const routes: Routes = [
       // { path: 'user/:id/edit', component: UserEditComponent },
     ]
   },
-  // { path: 'sigup', component: SignupComponent },
+  { path: 'sigup', component: SignupComponent },
   { path: 'login', component: LoginComponent},
 ];
 
