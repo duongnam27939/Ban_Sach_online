@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
-import { ICategory } from 'src/app/interFace/category';
+import { ICategory } from 'src/app/interface/category';
 import { CategoryService } from 'src/app/service/category.service';
 import Swal from 'sweetalert2';
 

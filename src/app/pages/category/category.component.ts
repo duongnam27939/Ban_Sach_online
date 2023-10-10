@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';import { ICategory } from 'src/app/interFace/category';
+import { ActivatedRoute, Router } from '@angular/router'; import { ICategory } from 'src/app/interface/category';
 ;
 import { CategoryService } from 'src/app/service/category.service';
 import Swal from 'sweetalert2';
@@ -66,7 +66,7 @@ export class CategoryComponent {
       this.category.getAllCategory().subscribe((response: any) => {
         this.categorys = response.data
         console.log(response.data);
-  
+
       })
     } else {
       this.category.getAllCategory().subscribe((response: any) => {

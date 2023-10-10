@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IProducts } from 'src/app/interFace/products';
+import { IProducts } from 'src/app/interface/products';
 import { ProductsService } from 'src/app/service/products.service';
 
 @Component({
@@ -14,43 +14,43 @@ export class LayoutUserComponent {
   products!: IProducts[]
   maxDisplayedProducts: number = 5;
   showResults: boolean = false;
-  
-  constructor(private router:Router,
+
+  constructor(private router: Router,
     private productService: ProductsService,
-    private route: ActivatedRoute){}
+    private route: ActivatedRoute) { }
 
 
-    onSearch() {
-      console.log(`product:`, this.searchValue);
-      if (this.searchValue) {
-        this.isShown = true;
-        this.productService.getAllProducts().subscribe((response: any) => {
-          const searchResults = response.products.filter((product: any) => {
-            const productNameMatch = product.name.toLowerCase().includes(this.searchValue.toLowerCase());
-            const authorNameMatch = product.author.toLowerCase().includes(this.searchValue.toLowerCase());
-            return productNameMatch || authorNameMatch;
-          });
-          this.products = searchResults.slice(0, this.maxDisplayedProducts);
-          this.showResults = true;
+  onSearch() {
+    console.log(`product:`, this.searchValue);
+    if (this.searchValue) {
+      this.isShown = true;
+      this.productService.getAllProducts().subscribe((response: any) => {
+        const searchResults = response.products.filter((product: any) => {
+          const productNameMatch = product.name.toLowerCase().includes(this.searchValue.toLowerCase());
+          const authorNameMatch = product.author.toLowerCase().includes(this.searchValue.toLowerCase());
+          return productNameMatch || authorNameMatch;
         });
-      } else {
-        this.showResults = false; 
-      }
-    }
-
-    
-    ngOnInit() {
-      this.onSearch();
-    }
-
-    onClickOutside() {
-      this.isShown = false;
-    }
-
-    onClick(item: IProducts) {
-      this.isShown = !this.isShown;
-      this.router.navigate(['/pages-detail', item._id]).then(() => {
-        window.location.reload();
+        this.products = searchResults.slice(0, this.maxDisplayedProducts);
+        this.showResults = true;
       });
+    } else {
+      this.showResults = false;
     }
+  }
+
+
+  ngOnInit() {
+    this.onSearch();
+  }
+
+  onClickOutside() {
+    this.isShown = false;
+  }
+
+  onClick(item: IProducts) {
+    this.isShown = !this.isShown;
+    this.router.navigate(['/pages-detail', item._id]).then(() => {
+      window.location.reload();
+    });
+  }
 }

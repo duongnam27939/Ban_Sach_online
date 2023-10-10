@@ -7,6 +7,7 @@ import { CategoryComponent } from './pages/category/category.component';
 import { CategoryAddComponent } from './pages/category-add/category-add.component';
 import { CategoryEditComponent } from './pages/category-edit/category-edit.component';
 import { CategoryDetailComponent } from './pages/category-detail/category-detail.component';
+import { HomepagesComponent } from './pages/homepages/homepages.component';
 // import { HomepagesComponent } from './pages/homepages/homepages.component';
 // import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
 // import { SignupComponent } from './pages/signup/signup.component';
@@ -28,7 +29,7 @@ import { CategoryDetailComponent } from './pages/category-detail/category-detail
 const routes: Routes = [
   {
     path: '', component: LayoutUserComponent, children: [
-      // { path: '', component: HomepagesComponent },
+      { path: '', component: HomepagesComponent },
       // { path: 'pages-detail/:id', component: PagesDetailComponent },
       { path: 'category-detail/:id', component: CategoryDetailComponent },
       // { path: 'search', component: ProductsSearchComponent },
