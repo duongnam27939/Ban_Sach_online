@@ -13,6 +13,7 @@ import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.compone
 import { LayoutUserComponent } from './Layout/layout-user/layout-user.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CategoryComponent } from './pages/category/category.component';
+import { CategoryAddComponent } from './pages/category-add/category-add.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CategoryComponent } from './pages/category/category.component';
     LayoutAdminComponent,
     LayoutUserComponent,
     CartComponent,
-    CategoryComponent
+    CategoryComponent,
+    CategoryAddComponent
   ],
   imports: [
     BrowserModule,
