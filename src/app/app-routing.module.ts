@@ -16,6 +16,7 @@ import { ProductsAddComponent } from './app.module';
 import { ProductsEditComponent } from './pages/products-edit/products-edit.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
+import { ProductsSearchComponent } from './pages/products-rearch/products-rearch.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,7 @@ const routes: Routes = [
       { path: '', component: HomepagesComponent },
       { path: 'pages-detail/:id', component: PagesDetailComponent },
       { path: 'category-detail/:id', component: CategoryDetailComponent },
-      // { path: 'search', component: ProductsSearchComponent },
+      { path: 'search', component: ProductsSearchComponent },
       { path: 'cart', component: CartComponent },
 
     ]
