@@ -1,80 +1,103 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { IProducts } from 'src/app/interface/products';
+import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms'
 import { ProductsService } from 'src/app/service/products.service';
+import { IProducts } from 'src/app/interface/products';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  selector: 'app-products-add',
+  templateUrl: './products-add.component.html',
+  styleUrls: ['./products-add.component.scss']
 })
-export class ProductsComponent {
-  products!: IProducts[];
-  category!: any[];
-  isShown: boolean = true;
-  searchValue: any;
-  
+export class ProductsAddComponent {
 
-  constructor(private productsService: ProductsService,
-    private route: ActivatedRoute) {
-    this.productsService.getAllProducts().subscribe((response: any) => {
-      this.products = response.products
-      console.log(response.products);
+  category!: any;
+  submitValue: boolean = false;
+
+  categoryForm = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    price: [0, [Validators.required]],
+    author: ['', [Validators.required]],
+    description: ['', [Validators.required]],
+    quantity: [0, [Validators.required]],
+    images: ['', [Validators.required]],
+    categoryId: ['', [Validators.required]],
+    sale: [0, [Validators.required]],
+    tags:['',[Validators.required]],
+    discount:[0, [Validators.required]],
+    status:['',[Validators.required]],
+  })
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private productsService: ProductsService,
+    private routers: Router
+  ) {
+    this.productsService.getCategory().subscribe((response: any) => {
+      this.category = response.data
+      console.log(response.data);
+
     })
   }
 
-  removeId(_id: any) {
-    this.productsService.deleteProduct(_id).subscribe((data) => {
-      
-      Swal.fire({
-        title: 'Xác nhận xóa',
-        text: 'Bạn có chắc chắn muốn xóa sản phẩm?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'OK',
-        cancelButtonText: 'Hủy',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
+  // onSelectImage(event: any) {
+  //   this.files.push(...event.addedFiles);
+  //   const file_data = this.files[0]
+  //   const data = new FormData();
+  //   data.append('file', file_data);
+  //   data.append('upload_preset', 'upload');
+  //   data.append('cloud_name', 'doa7mkkpq');
+  //   this.productsService.uploadImage(data,
+  //   ).subscribe(response => {
+  //     this.url.push(response.secure_url)
+  //     console.log(this.url);
+  //   }
+  //   )
+  // }
+
+  // files: any[] = [];
+  // url: any = []
+  // onRemovem(event: any) {
+  //   console.log(event);
+  //   this.files.splice(this.files.indexOf(event), 1);
+
+  // }
+
+  onhandledSubmit() {
+    this.submitValue = true
+    if (this.categoryForm.valid) {
+      const product: IProducts = {
+        name: this.categoryForm.value.name || '',
+        price: this.categoryForm.value.price || 0,
+        author: this.categoryForm.value.author || '',
+        description: this.categoryForm.value.description || '',
+        quantity: this.categoryForm.value.quantity || 0,
+        images: this.categoryForm.value.images || '',
+        sale: this.categoryForm.value.sale || 0,
+        tags:this.categoryForm.value.tags || '',
+        discount: this.categoryForm.value.discount || 0,
+        status:this.categoryForm.value.status || '',
+        categoryId: this.categoryForm.value.categoryId || '',
+        
+      }
+      console.log(product);     
+        this.productsService.addProduct(product).subscribe((data) => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Xóa sản phẩm thành công',
-            text: 'Sản phẩm đã được xóa thành công!',
+            title: 'thêm sản phẩm thành công!',
+            text: 'Sản phẩm đã được thêm thành công!',
             showConfirmButton: false,
-            timer: 2000,
-            iconHtml: '<i class="fas fa-check-circle"></i>'
-          });
-          this.products = this.products.filter(item => item._id !== _id)
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire(
-            'Hủy bỏ',
-            'Sản phẩm không bị xóa.',
-            'info'
-          );
-        }
-      });
-    })
-  }
-
-
-  onSearch() {
-    console.log(`product:`, this.searchValue);
-    this.isShown = true;
-    if (this.searchValue === "") {
-      this.productsService.getAllProducts().subscribe((response: any) => {
-        this.products = response.products;
-        console.log(response.products);
-      });
-    } else {
-      this.productsService.getAllProducts().subscribe((response: any) => {
-        this.products = response.products.filter((product: any) => {
-          const productNameMatch = product.name.toLowerCase().includes(this.searchValue.toLowerCase());
-          const authorNameMatch = product.author.toLowerCase().includes(this.searchValue.toLowerCase());
-          return productNameMatch || authorNameMatch;
-        });
-      });
+            iconHtml: '<i class="fas fa-check-circle"></i>',
+            timer: 2000
+          })
+          this.routers.navigate(['admin/products'])
+        }, (error) => {
+          alert("Thêm không thành công")
+        
+        })
+      
     }
   }
 }
