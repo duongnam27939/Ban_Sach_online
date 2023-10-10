@@ -1,0 +1,12 @@
+.add_category{
+    background-color: #ccc;
+    width: 1215px;
+    color: rgb(17 24 39);
+}
+
+.category_item{
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

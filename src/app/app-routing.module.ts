@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutUserComponent } from './Layout/layout-user/layout-user.component';
 import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { CategoryComponent } from './pages/category/category.component';
 // import { HomepagesComponent } from './pages/homepages/homepages.component';
 // import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
 // import { SignupComponent } from './pages/signup/signup.component';
@@ -34,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'admin', component: LayoutAdminComponent, children: [
-      // { path: 'category', component: CategoryComponent },
+      { path: 'category', component: CategoryComponent },
       // { path: 'category/add', component: CategoryAddComponent },
       // { path: 'category/:id/edit', component: CategoryEditComponent },
       // { path: 'products', component: ProductsComponent },
