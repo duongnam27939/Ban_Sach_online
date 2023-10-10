@@ -11,6 +11,7 @@ import { HomepagesComponent } from './pages/homepages/homepages.component';
 import { ListUserComponent } from './pages/list-user/list-user.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PagesDetailComponent } from './pages/pages-detail/pages-detail.component';
+import { ProductsComponent } from './pages/products/products.component';
 // import { HomepagesComponent } from './pages/homepages/homepages.component';
 // import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
 // import { SignupComponent } from './pages/signup/signup.component';
@@ -45,7 +46,7 @@ const routes: Routes = [
       { path: 'category', component: CategoryComponent },
       { path: 'category/add', component: CategoryAddComponent },
       { path: 'category/:id/edit', component: CategoryEditComponent },
-      // { path: 'products', component: ProductsComponent },
+      { path: 'products', component: ProductsComponent },
       // { path: 'products/add', component: ProductsAddComponent },
       // { path: 'products/:id/edit', component: ProductsEditComponent },
       { path: 'user', component: ListUserComponent },

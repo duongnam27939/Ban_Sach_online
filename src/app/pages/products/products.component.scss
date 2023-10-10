@@ -1,0 +1,21 @@
+.add_products {
+    background-color: #ccc;
+    width: 1215px;
+    color: rgb(17 24 39);
+}
+
+.td_images {
+    width: 150px;
+    height: 150px;
+}
+
+.products_btn {
+    width: 100px;
+}
+
+.products_item {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

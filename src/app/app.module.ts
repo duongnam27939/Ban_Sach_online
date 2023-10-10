@@ -20,6 +20,7 @@ import { HomepagesComponent } from './pages/homepages/homepages.component';
 import { ListUserComponent } from './pages/list-user/list-user.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PagesDetailComponent } from './pages/pages-detail/pages-detail.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { PagesDetailComponent } from './pages/pages-detail/pages-detail.componen
     HomepagesComponent,
     ListUserComponent,
     LoginComponent,
-    PagesDetailComponent
+    PagesDetailComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
