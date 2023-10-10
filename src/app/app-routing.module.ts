@@ -4,6 +4,8 @@ import { LayoutUserComponent } from './Layout/layout-user/layout-user.component'
 import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CategoryComponent } from './pages/category/category.component';
+import { CategoryAddComponent } from './pages/category-add/category-add.component';
+import { CategoryEditComponent } from './pages/category-edit/category-edit.component';
 // import { HomepagesComponent } from './pages/homepages/homepages.component';
 // import { LayoutAdminComponent } from './Layout/layout-admin/layout-admin.component';
 // import { SignupComponent } from './pages/signup/signup.component';
@@ -36,8 +38,8 @@ const routes: Routes = [
   {
     path: 'admin', component: LayoutAdminComponent, children: [
       { path: 'category', component: CategoryComponent },
-      // { path: 'category/add', component: CategoryAddComponent },
-      // { path: 'category/:id/edit', component: CategoryEditComponent },
+      { path: 'category/add', component: CategoryAddComponent },
+      { path: 'category/:id/edit', component: CategoryEditComponent },
       // { path: 'products', component: ProductsComponent },
       // { path: 'products/add', component: ProductsAddComponent },
       // { path: 'products/:id/edit', component: ProductsEditComponent },
