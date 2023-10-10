@@ -15,6 +15,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { CategoryAddComponent } from './pages/category-add/category-add.component';
 import { CategoryEditComponent } from './pages/category-edit/category-edit.component';
+import { CategoryDetailComponent } from './pages/category-detail/category-detail.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { CategoryEditComponent } from './pages/category-edit/category-edit.compo
     CartComponent,
     CategoryComponent,
     CategoryAddComponent,
-    CategoryEditComponent
+    CategoryEditComponent,
+    CategoryDetailComponent
   ],
   imports: [
     BrowserModule,
