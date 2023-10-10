@@ -15,6 +15,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProductsAddComponent } from './app.module';
 import { ProductsEditComponent } from './pages/products-edit/products-edit.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { UserEditComponent } from './pages/user-edit/user-edit.component';
 
 
 const routes: Routes = [
@@ -37,7 +38,7 @@ const routes: Routes = [
       { path: 'products/add', component: ProductsAddComponent },
       { path: 'products/:id/edit', component: ProductsEditComponent },
       { path: 'user', component: ListUserComponent },
-      // { path: 'user/:id/edit', component: UserEditComponent },
+      { path: 'user/:id/edit', component: UserEditComponent },
     ]
   },
   { path: 'sigup', component: SignupComponent },
