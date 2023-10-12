@@ -1,49 +1,69 @@
 <nav>
     <div class="item">
-        <ul class="nav_ul">
-            <li class="nav_li">
-                <a href="#">
-                    <i class="fa-solid fa-circle-info"></i>
-                    Trợ giúp
-                </a>
-            </li>
-            <li class="nav_li">
-                <a href="#">
-                    <i class="fa-solid fa-newspaper"></i>
-                    Tin tức </a>
-            </li>
-            <li class="nav_li">
-                <a href="#">
-                    <i class="fa-solid fa-tag"></i>
-                    Khuyến mãi</a>
-            </li>
-        </ul>
+      <ul class="nav_ul">
+        <li class="nav_li">
+          <a href="#">
+            <i class="fa-solid fa-circle-info"></i>
+            Trợ giúp
+          </a>
+        </li>
+        <li class="nav_li">
+          <a href="#">
+            <i class="fa-solid fa-newspaper"></i>
+            Tin tức
+          </a>
+        </li>
+        <li class="nav_li">
+          <a href="#">
+            <i class="fa-solid fa-tag"></i>
+            Khuyến mãi
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="items">
-        <ul class="nav_ul">
-            <li class="nav_li">
-                <a href="#">
-                    <i class="fa-solid fa-gift"></i>
-                    Ưu đãi & tiện ích</a>
-            </li>
-            <li class="nav_li">
-                <a href="#">
-                    <i class="fa-solid fa-box"></i>
-                    Kiểm tra đơn hàng</a>
-            </li>
-            <li class="nav_li">
-                <a href="login">
-                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                    Đăng nhập</a>
-            </li>
-            <li class="nav_li">
-                <a href="sigup">
-                    <i class="fa-regular fa-user"></i>
-                    Đăng kí</a>
-            </li>
-        </ul>
+      <ul class="nav_ul">
+        <li class="nav_li">
+          <a href="#">
+            <i class="fa-solid fa-gift"></i>
+            Ưu đãi & tiện ích
+          </a>
+        </li>
+        <li class="nav_li">
+          <a href="#">
+            <i class="fa-solid fa-box"></i>
+            Kiểm tra đơn hàng
+          </a>
+        </li>
+        <li class="nav_li" *ngIf="userName">
+            <a>
+                <h1 *ngIf="userName">Xin chào, 
+                    <span>{{ userName }}</span></h1>
+            </a>
+          </li>
+        
+        <li class="nav_li" *ngIf="userName">
+          <a href="#" (click)="logout()">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            Đăng xuất
+          </a>
+        </li>
+        <li class="nav_li" *ngIf="!userName">
+          <a href="login">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            Đăng nhập
+          </a>
+        </li>
+        <li class="nav_li" *ngIf="!userName">
+          <a href="sigup">
+            <i class="fa-regular fa-user"></i>
+            Đăng kí
+          </a>
+        </li>
+      </ul>
     </div>
-</nav>
+  </nav>
+
 <header>
     <div class="logo">
         <a href=""><img src="https://bookbuy.vn/Images/frontend/base/logo-new.png" alt=""></a>
@@ -51,27 +71,29 @@
     <div class="rearch">
         <div class="rearch_cart">
             <div class="haa">
-                <button class="category-button "[routerLink]="['/search']" [queryParams]="{ value: searchValue }" [disabled]="!searchValue">Tìm kiếm</button>
+                <button class="category-button " [routerLink]="['/search']" [queryParams]="{ value: searchValue }"
+                    [disabled]="!searchValue">Tìm kiếm</button>
             </div>
             <div>
                 <div class="position-relative">
                     <form class=" position-relative  col-5 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                        <input [(ngModel)]="searchValue" name="searchValue"  class="form-control form-control-dark"
-                          placeholder="Bạn muốn tìm kiếm?..." aria-label="Search" (input)="onSearch()">
-                      </form>
-                      <button class="rearch-btn" [routerLink]="['/search']" [queryParams]="{ value: searchValue }" [disabled]="!searchValue"><i class="icon-btn fa-solid fa-magnifying-glass"></i></button>
+                        <input [(ngModel)]="searchValue" name="searchValue" class="form-control form-control-dark"
+                            placeholder="Bạn muốn tìm kiếm?..." aria-label="Search" (input)="onSearch()">
+                    </form>
+                    <button class="rearch-btn" [routerLink]="['/search']" [queryParams]="{ value: searchValue }"
+                        [disabled]="!searchValue"><i class="icon-btn fa-solid fa-magnifying-glass"></i></button>
                     <div *ngIf="showResults">
-                        <div class="position-absolute w-100% mr-3 mt-1 bg-gray-300 rounded" *ngIf="isShown " 
-                        (clickOutside)="onClickOutside()">
-    
+                        <div class="position-absolute w-100% mr-3 mt-1 bg-gray-300 rounded" *ngIf="isShown "
+                            (clickOutside)="onClickOutside()">
+
                             <div *ngFor="let item of products">
-                                <a class="d-flex flex-wrap mb-1" (click)="onClick(item)" 
+                                <a class="d-flex flex-wrap mb-1" (click)="onClick(item)"
                                     routerLink="/pages-detail/{{item._id}}">
                                     <img class="reach-imgaes" [src]="item.images" alt="">
                                     <p class="text-rearch1 text-body">{{item.name}}</p>
                                 </a>
                             </div>
-    
+
                         </div>
                     </div>
                 </div>

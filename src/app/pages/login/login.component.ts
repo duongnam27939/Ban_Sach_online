@@ -38,8 +38,12 @@ export class LoginComponent {
       this.auth.login(user).subscribe(
         (data: any) => {
           console.log(data);
-          localStorage.setItem("user", JSON.stringify(data));
+          
+          
+          // localStorage.setItem("user", JSON.stringify(data));
           localStorage.setItem('token', data.accessToken);
+          localStorage.setItem('userName', data.auth.name);
+          localStorage.setItem('role', data.role);
           let token = localStorage.getItem('token');
           console.log(token);
           Swal.fire({
