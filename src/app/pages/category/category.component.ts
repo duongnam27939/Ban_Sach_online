@@ -14,7 +14,12 @@ export class CategoryComponent {
   isShown: boolean = true;
   searchValue: any;
 
- 
+  allCategory!: ICategory[];
+  //  listmist + page
+  page : number = 1
+  tabSize : number = 3;
+  tabSizes : any[]= [2, 4 ,6 ,8,1000]
+  count:number=0
 
 
   constructor(private category: CategoryService,
@@ -23,11 +28,32 @@ export class CategoryComponent {
     this.category.getAllCategory().subscribe((response: any) => {
       this.categorys = response.data
       console.log(response.data);
-     
+      this.allCategory = response.data
     })
   }
 
+  onHandleSubmit(){
+    this.category.getAllCategory().subscribe((response: any) => {
+      console.log(response.data)
+      this.category = response.data
+      this.allCategory = response.data
+    }
+    )
+  }
+  onHandleLimit(event:any){
+    this.tabSize = event.target.value;
+    console.log(event.target.value)
+    this.page=1
+    this.onHandleSubmit()
+    console.log(this.onHandleSubmit());
+    
+  }
   
+  onHandlesPage(event:any){
+    this.page= event;
+    this.onHandleSubmit()
+  
+  }
 
   removeId(_id: any) {
     this.category.deleteCategory(_id).subscribe((data) => {

@@ -30,7 +30,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let cate of categorys "
+            <tr *ngFor="let cate of categorys | paginate:{itemsPerPage: tabSize,
+                currentPage: page,
+                totalItems: count}"
             class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                 <th scope="row" class="category_item px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{cate.name}}
@@ -47,7 +49,7 @@
             </select>
         </td> -->
     </table>
-    
+    <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls>
 </div>
 
 
