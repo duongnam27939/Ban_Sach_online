@@ -14,7 +14,13 @@ export class HomepagesComponent {
 
   products!: IProducts[]
   category?: ICategory[]
-  
+  allCategory!: ICategory[];
+
+
+  page: number = 1;
+  tabSize: number = 8;
+  tabSizes: number[] = [4, 6, 8, 10, 100]
+  count: number = 0
   constructor(private productsSevri: ProductsService,
     private cate: CategoryService) {
     this.productsSevri.getAllProducts().subscribe((response: any) => {
@@ -23,14 +29,35 @@ export class HomepagesComponent {
     })
     this.cate.getAllCategory().subscribe((response: any) => {
       this.category = response.data
-      
+      this.allCategory = response.data;
 
       // console.log(response);
 
 
     })
   }
-  
+  onHandleSubmit() {
+    this.cate.getAllCategory().subscribe((response: any) => {
+      console.log(response.data)
+      this.category = response.data
+      this.allCategory = response.data
+    }
+    )
+  }
+  onHandleLimit(event: any) {
+    this.tabSize = event.target.value;
+    console.log(event.target.value)
+    this.page = 1
+    this.onHandleSubmit()
+    console.log(this.onHandleSubmit());
+
+  }
+
+  onHandlesPage(event: any) {
+    this.page = event;
+    this.onHandleSubmit()
+
+  }
 
   formatCurrency(value: number): string {
     const formatter = new Intl.NumberFormat('vi-VN', {
