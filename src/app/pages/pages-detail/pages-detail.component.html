@@ -99,7 +99,9 @@
         <p class="same_text_1">Sản Phẩm cùng loại</p>
     </div>
     <div class="card_flex1 d-flex flex-wrap">
-        <div *ngFor="let item of similarProducts">
+        <div *ngFor="let item of similarProducts | paginate:{itemsPerPage: tabSize,
+            currentPage: page,
+            totalItems: count}">
             <div class="card_flex card" style="width: 18rem;">
                 <a  [href]="'/pages-detail/'+item._id"><img
                         [src]="item.images"
@@ -116,4 +118,6 @@
             </div>
         </div>            
     </div>
+    <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls>
+      
 </div>

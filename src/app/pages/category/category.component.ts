@@ -14,6 +14,8 @@ export class CategoryComponent {
   isShown: boolean = true;
   searchValue: any;
 
+ 
+
 
   constructor(private category: CategoryService,
     private route: ActivatedRoute,
@@ -21,9 +23,11 @@ export class CategoryComponent {
     this.category.getAllCategory().subscribe((response: any) => {
       this.categorys = response.data
       console.log(response.data);
-
+     
     })
   }
+
+  
 
   removeId(_id: any) {
     this.category.deleteCategory(_id).subscribe((data) => {

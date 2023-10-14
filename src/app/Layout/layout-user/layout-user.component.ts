@@ -45,7 +45,7 @@ export class LayoutUserComponent {
         this.role = null;
         Swal.fire(
           'Đăng xuất!',
-          'Đăng xuất Success',
+          'Đăng xuất thành công',
           'success'
         )
       }

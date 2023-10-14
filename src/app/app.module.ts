@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FormsModule } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { NgxPaginationModule } from "ngx-pagination";
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -57,7 +59,8 @@ import { UserEditComponent } from './pages/user-edit/user-edit.component';
     ReactiveFormsModule,
     NgxDropzoneModule,
     FormsModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

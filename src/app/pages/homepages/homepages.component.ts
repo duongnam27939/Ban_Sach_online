@@ -14,6 +14,7 @@ export class HomepagesComponent {
 
   products!: IProducts[]
   category?: ICategory[]
+  
   constructor(private productsSevri: ProductsService,
     private cate: CategoryService) {
     this.productsSevri.getAllProducts().subscribe((response: any) => {
@@ -22,11 +23,15 @@ export class HomepagesComponent {
     })
     this.cate.getAllCategory().subscribe((response: any) => {
       this.category = response.data
+      
+
       // console.log(response);
 
 
     })
   }
+  
+
   formatCurrency(value: number): string {
     const formatter = new Intl.NumberFormat('vi-VN', {
       style: 'currency',

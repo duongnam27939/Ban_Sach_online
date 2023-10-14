@@ -63,7 +63,7 @@
           </div>
   
           <div class="card_flex d-flex flex-wrap">
-              <div *ngFor="let item of products.products">
+              <div *ngFor="let item of products.products ">
                   <div class="card" style="width: 18rem;">
                       <a [routerLink]="['/pages-detail/',item._id]"><img [src]="item.images" class="card-img-top" alt="..."></a>
                       <div class="card-body">
@@ -78,7 +78,7 @@
                       </div>
                     </div>
               </div>
-
           </div>
       </div>
+     
   </aside>

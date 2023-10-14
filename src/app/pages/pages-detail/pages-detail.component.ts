@@ -14,6 +14,13 @@ export class PagesDetailComponent {
   category!: string;
   similarProducts: IProducts[] = [];
 
+  allProducts!: IProducts[];
+  // limt +Page
+  page: number = 1;
+  tabSize: number = 8;
+  tabSizes: number[] = [4, 6, 8, 10, 100]
+  count: number = 0
+
   constructor(
     private router: ActivatedRoute,
     private productsService: ProductsService,
@@ -25,16 +32,40 @@ export class PagesDetailComponent {
         this.products = data.products;
         console.log(this.products);
         console.log(this.products.categoryId._id);
-        
+
         if (this.products.categoryId._id) {
-          this.categoryService.getCategory(this.products.categoryId._id).subscribe((response:any) => {
-          this.similarProducts = response.products;
-          console.log(response.products);
-          
+          this.categoryService.getCategory(this.products.categoryId._id).subscribe((response: any) => {
+            this.similarProducts = response.products;
+            console.log(response.products);
+            this.allProducts = response.data
           })
         }
       });
     }
+
+  }
+
+
+  onHandleSubmit() {
+    this.categoryService.getCategory(this.products.categoryId._id).subscribe((response: any) => {
+      console.log(response.data)
+      this.similarProducts = response.products;
+      this.allProducts = response.data
+    }
+    )
+  }
+  onHandleLimit(event: any) {
+    this.tabSize = event.target.value;
+    console.log(event.target.value)
+    this.page = 1
+    this.onHandleSubmit()
+    console.log(this.onHandleSubmit());
+
+  }
+
+  onHandlesPage(event: any) {
+    this.page = event;
+    this.onHandleSubmit()
 
   }
 

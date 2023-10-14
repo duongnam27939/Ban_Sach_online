@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ICategory } from 'src/app/interface/category';
+import { IProducts } from 'src/app/interface/products';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductsService } from 'src/app/service/products.service';
 
@@ -11,6 +13,8 @@ import { ProductsService } from 'src/app/service/products.service';
 export class CategoryDetailComponent {
    category!:any;
    products!:any;
+
+   allCategory!: IProducts[];
 
   constructor(
     private router: ActivatedRoute,
@@ -32,7 +36,7 @@ export class CategoryDetailComponent {
       
     });
   }
-  
+
   
 
   formatCurrency(value: number): string {

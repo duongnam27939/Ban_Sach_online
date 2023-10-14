@@ -43,7 +43,9 @@
         </tr>
       </thead>
       <tbody> 
-        <tr *ngFor="let item of products" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+        <tr *ngFor="let item of products | paginate:{itemsPerPage: tabSize,
+          currentPage: page,
+          totalItems: count}" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
           <th scope="row" class="products_item px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             {{item.name}}
           </th>
@@ -65,4 +67,10 @@
         </tr>
       </tbody>
     </table>
+    <!-- <td class="px-6 py-4">
+      <select (change)="onHandleLimit($event)">
+          <option *ngFor="let size of tabSizes" [ngValue]="size">{{size}}</option>
+      </select>
+  </td> -->
+    <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls>
   </div>

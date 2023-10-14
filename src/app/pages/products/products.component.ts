@@ -15,17 +15,51 @@ export class ProductsComponent {
   isShown: boolean = true;
   searchValue: any;
   
+  allProducts!: IProducts[];
+  // limt +Page
+  page: number = 1;
+  tabSize: number = 4;
+  tabSizes: number[] = [4, 6, 8, 10, 100]
+  count: number = 0
 
   constructor(private productsService: ProductsService,
     private route: ActivatedRoute) {
     this.productsService.getAllProducts().subscribe((response: any) => {
       this.products = response.products
-      console.log(response.products);
+      // console.log(response.products);
+      this.allProducts = response.products
+      console.log(this.allProducts);
+      
     })
   }
 
+
+  onHandleSubmit() {
+    this.productsService.getAllProducts().subscribe((response: any) => {
+      console.log(response.products)
+      this.products = response.products
+      this.allProducts = response.products
+    }
+    )
+  }
+  
+  onHandleLimit(event: any) {
+    this.tabSize = event.target.value;
+    this.page = 1
+    this.onHandleSubmit()
+    console.log(this.onHandleSubmit());
+
+  }
+
+  onHandlesPage(event: any) {
+    this.page = event;
+    this.onHandleSubmit()
+
+  }
+
+
   removeId(_id: any) {
-    this.productsService.deleteProduct(_id).subscribe((data) => {
+    this.productsService.deleteProduct(_id).subscribe((products) => {
       
       Swal.fire({
         title: 'Xác nhận xóa',
