@@ -37,15 +37,16 @@ export class LoginComponent {
       };
       this.auth.login(user).subscribe(
         (data: any) => {
-          console.log(data);
+          console.log(data.auth.email);
           
           
           // localStorage.setItem("user", JSON.stringify(data));
           localStorage.setItem('token', data.accessToken);
           localStorage.setItem('userName', data.auth.name);
-          localStorage.setItem('role', data.role);
+          localStorage.setItem('role', data.auth.role);
+          localStorage.setItem('email', data.auth.email);
           let token = localStorage.getItem('token');
-          console.log(token);
+          // console.log(token);
           Swal.fire({
             title: 'Đăng nhập thành công',
             text: 'Bạn đã đăng nhập thành công!',

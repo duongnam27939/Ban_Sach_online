@@ -12,7 +12,7 @@ export class ProductsSearchComponent {
   searchValue: string = '';
   products: IProducts[] = [];
 
-  
+ 
   
   noResultsFound: boolean = false;
 
@@ -31,7 +31,7 @@ export class ProductsSearchComponent {
 
   searchProducts() {
     this.productService.getAllProducts().subscribe((response: any) => {
-     
+      
       this.products = response.products.filter((product: any) => {
         const productNameMatch = product.name.toLowerCase().includes(this.searchValue.toLowerCase());
         const authorNameMatch = product.author.toLowerCase().includes(this.searchValue.toLowerCase());
