@@ -7,7 +7,9 @@
     
     <div>
         <div class="card_flex d-flex flex-wrap">
-            <div *ngFor="let item of products ">
+            <div *ngFor="let item of products | paginate:{itemsPerPage: tabSize,
+                currentPage: page,
+                totalItems: count}">
                 <div class="card" style="width: 18rem;">
                     <a routerLink="/pages-detail/{{item._id}}"><img [src]="item.images" class="card-img-top" alt="..."></a>
                     <div class="card-body">
@@ -24,7 +26,7 @@
             </div>
 
         </div>
-        
+        <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls>
     </div>
     
 </aside>

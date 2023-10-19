@@ -12,7 +12,12 @@ export class ProductsSearchComponent {
   searchValue: string = '';
   products: IProducts[] = [];
 
- 
+  allProducts!: IProducts[];
+  // limt +Page
+  page: number = 1;
+  tabSize: number = 8;
+  tabSizes: number[] = [4, 6, 8, 10, 100]
+  count: number = 0
   
   noResultsFound: boolean = false;
 
@@ -31,7 +36,7 @@ export class ProductsSearchComponent {
 
   searchProducts() {
     this.productService.getAllProducts().subscribe((response: any) => {
-      
+      this.allProducts = response.products
       this.products = response.products.filter((product: any) => {
         const productNameMatch = product.name.toLowerCase().includes(this.searchValue.toLowerCase());
         const authorNameMatch = product.author.toLowerCase().includes(this.searchValue.toLowerCase());
@@ -43,7 +48,32 @@ export class ProductsSearchComponent {
   }
 
 
+  onHandleSubmit() {
+    this.productService.getAllProducts().subscribe((response: any) => {
+      this.allProducts = response.products
+      this.products = response.products.filter((product: any) => {
+        const productNameMatch = product.name.toLowerCase().includes(this.searchValue.toLowerCase());
+        const authorNameMatch = product.author.toLowerCase().includes(this.searchValue.toLowerCase());
+        return productNameMatch || authorNameMatch;
+      });
+  
+      this.noResultsFound = this.products.length === 0;
+    });
+  }
+  
+  onHandleLimit(event: any) {
+    this.tabSize = event.target.value;
+    this.page = 1
+    this.onHandleSubmit()
+    console.log(this.onHandleSubmit());
 
+  }
+
+  onHandlesPage(event: any) {
+    this.page = event;
+    this.onHandleSubmit()
+
+  }
 
 
   formatCurrency(value: number): string {
