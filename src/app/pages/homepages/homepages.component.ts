@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { ICategory } from 'src/app/interface/category';
 import { IProducts } from 'src/app/interface/products';
+import { AddToCartService } from 'src/app/service/add-to-cart.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductsService } from 'src/app/service/products.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -15,6 +17,7 @@ export class HomepagesComponent {
   products!: IProducts[]
   category?: ICategory[]
   allCategory!: ICategory[];
+  
 
 
   page: number = 1;
@@ -22,7 +25,8 @@ export class HomepagesComponent {
   tabSizes: number[] = [4, 6, 8, 10, 100]
   count: number = 0
   constructor(private productsSevri: ProductsService,
-    private cate: CategoryService) {
+    private cate: CategoryService,
+    private cartService: AddToCartService) {
     this.productsSevri.getAllProducts().subscribe((response: any) => {
       this.products = response.products.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
       // console.log(response.products);
@@ -68,4 +72,6 @@ export class HomepagesComponent {
 
     return formatter.format(value);
   }
+
+  
 }
