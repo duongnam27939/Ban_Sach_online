@@ -25,7 +25,6 @@ export class ProductsAddComponent {
     categoryId: ['', [Validators.required]],
     sale: [0, [Validators.required]],
     tags:['',[Validators.required]],
-    discount:[0, [Validators.required]],
     status:['',[Validators.required]],
   })
 
@@ -76,7 +75,6 @@ export class ProductsAddComponent {
         images: this.categoryForm.value.images || '',
         sale: this.categoryForm.value.sale || 0,
         tags:this.categoryForm.value.tags || '',
-        discount: this.categoryForm.value.discount || 0,
         status:this.categoryForm.value.status || '',
         categoryId: this.categoryForm.value.categoryId || '',
         

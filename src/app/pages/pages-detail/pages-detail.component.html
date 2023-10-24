@@ -19,7 +19,7 @@
                     <h2 class="card-subtitle mt-1">{{products.author}} <span class="span_text">(Tác giả)</span></h2>
                     <p class="price mt-1">{{ formatCurrency(products.price) }}</p>
                     <div class="text">
-                        <p class="text_price ">Tiết Kiệm: <span class="span_price">{{ formatCurrency(products.discount) }}</span></p>
+                        <p class="text_price ">Tiết Kiệm: <span class="span_price">{{ formatCurrency(products.sale) }}</span></p>
                         <p class="text_price1  ">Tình Trang: <span class="span_price">{{products.status}}</span></p>
                         <p class="text_price1  ">Tags: <span class="span_price1">{{products.tags}}</span></p>
                     </div>
@@ -111,7 +111,7 @@
                     </h5>
                     <p class="card-text1">{{item.author}}</p>
                     <div class="card_style d-flex ">
-                        <p class="card-price1">{{ formatCurrency(item.price) }}<del class="del_text">{{ formatCurrency(item.discount) }}</del></p>
+                        <p class="card-price1">{{ formatCurrency(item.price) }}<del class="del_text">{{ formatCurrency(item.sale) }}</del></p>
                         <a href="#" class="btn_cart btn btn-danger"><i class="cart_icon fa-solid fa-cart-shopping"></i></a>
                     </div>
                 </div>

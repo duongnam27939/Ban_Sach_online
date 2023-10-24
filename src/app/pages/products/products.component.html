@@ -47,7 +47,7 @@
           currentPage: page,
           totalItems: count}" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
           <th scope="row" class="products_item px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {{item.name}}
+            <a routerLink="{{item._id}}">{{item.name}}</a>
           </th>
           <td class="px-6 py-4">
             <img [src]="item.images" alt="" class="td_images">

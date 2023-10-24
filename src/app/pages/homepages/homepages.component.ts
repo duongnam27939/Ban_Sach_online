@@ -17,7 +17,8 @@ export class HomepagesComponent {
   products!: IProducts[]
   category?: ICategory[]
   allCategory!: ICategory[];
-  
+  carts: any = this.cartService.getToCart()
+  index!: any
 
 
   page: number = 1;

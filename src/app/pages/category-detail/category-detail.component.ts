@@ -15,11 +15,11 @@ export class CategoryDetailComponent {
    products!:any;
 
    allCategory!: IProducts[];
+   
 
   constructor(
     private router: ActivatedRoute,
     private categoryService: CategoryService,
-    private productService: ProductsService
   ) {
     const id = this.router.snapshot.paramMap.get('id')!;
     // console.log(id);
@@ -32,10 +32,12 @@ export class CategoryDetailComponent {
     this.categoryService.getAllCategory().subscribe((data:any) => {
       this.category = data.data;
       console.log(data.data);
-      
-      
+      this.allCategory = data      
     });
   }
+
+ 
+
 
   
 

@@ -7,7 +7,6 @@ export interface IProducts{
     quantity:number;
     sale:number;
     tags:string,
-    discount:number
     images:string;
     status:string;
     categoryId: any,
