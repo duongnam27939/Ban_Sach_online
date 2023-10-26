@@ -15,7 +15,10 @@ export class CategoryDetailComponent {
    products!:any;
 
    allCategory!: IProducts[];
-   
+   page: number = 1;
+   tabSize: number = 8;
+   tabSizes: number[] = [4, 6, 8, 10, 100]
+   count: number = 0
 
   constructor(
     private router: ActivatedRoute,
@@ -36,7 +39,28 @@ export class CategoryDetailComponent {
     });
   }
 
- 
+  onHandleSubmit() {
+    this.categoryService.getAllCategory().subscribe((response: any) => {
+      console.log(response.data)
+      this.category = response.data
+      this.allCategory = response.data
+    }
+    )
+  }
+  onHandleLimit(event: any) {
+    this.tabSize = event.target.value;
+    console.log(event.target.value)
+    this.page = 1
+    this.onHandleSubmit()
+    console.log(this.onHandleSubmit());
+
+  }
+
+  onHandlesPage(event: any) {
+    this.page = event;
+    this.onHandleSubmit()
+
+  }
 
 
   
