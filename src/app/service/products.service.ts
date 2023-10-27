@@ -63,11 +63,15 @@ export class ProductsService {
     return this.http.get<any[]>(url, this.httpOptions);
   }
 
-
-
-
   searchProducts(searchValue: string): Observable<any> {
     return this.http.get<any>(`${this.API}/products/search?pr=${searchValue}`);
+  }
+
+  uploadImage(vals: any): Observable<any> {
+    {
+      let data = vals;
+      return this.http.post(`https://api.cloudinary.com/v1_1/doa7mkkpq/image/upload`, data)
+    }
   }
 
 }

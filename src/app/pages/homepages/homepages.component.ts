@@ -74,5 +74,6 @@ export class HomepagesComponent {
     return formatter.format(value);
   }
 
+  //  cart
   
 }

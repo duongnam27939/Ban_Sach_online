@@ -82,6 +82,8 @@
               </div>
           </div>
       </div>
-      <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls>
-      
+     <div *ngIf="products.products.length > tabSize" >
+          <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls>
+          
+     </div>
   </aside>

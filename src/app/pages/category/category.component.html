@@ -49,7 +49,7 @@
             </select>
         </td> -->
     </table>
-    <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls>
+   <div *ngIf="categorys.length > tabSize"> <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls></div>
 </div>
 
 

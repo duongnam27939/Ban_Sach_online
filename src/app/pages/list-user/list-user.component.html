@@ -62,6 +62,6 @@
             <option *ngFor="let size of tabSizes" [ngValue]="size">{{size}}</option>
         </select>
     </td> -->
-<pagination-controls previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls>
+<div *ngIf="user.length > tabSize" ><pagination-controls previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls></div>
 </div>
 

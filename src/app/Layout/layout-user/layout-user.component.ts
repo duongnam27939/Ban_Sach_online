@@ -22,7 +22,6 @@ export class LayoutUserComponent {
   constructor(private router: Router,
     private productService: ProductsService,
     private route: ActivatedRoute,
-    // private addToCartService: AddToCartService
   ) { }
   userName = localStorage.getItem('userName');
   role = localStorage.getItem('role');
