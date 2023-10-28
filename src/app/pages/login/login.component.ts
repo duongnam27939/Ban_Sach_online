@@ -41,7 +41,7 @@ export class LoginComponent {
           
           
           // localStorage.setItem("user", JSON.stringify(data));
-         
+          localStorage.setItem('isLoggedIn', 'true'); 
           localStorage.setItem('token', data.accessToken);
           localStorage.setItem('userName', data.auth.name);
           localStorage.setItem('role', data.auth.role);
