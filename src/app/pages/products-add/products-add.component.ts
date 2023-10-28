@@ -35,33 +35,13 @@ export class ProductsAddComponent {
   ) {
     this.productsService.getCategory().subscribe((response: any) => {
       this.category = response.data
-      console.log(response.data);
+      // console.log(response.data);
 
     })
   }
 
-  // onSelectImage(event: any) {
-  //   this.files.push(...event.addedFiles);
-  //   const file_data = this.files[0]
-  //   const data = new FormData();
-  //   data.append('file', file_data);
-  //   data.append('upload_preset', 'upload');
-  //   data.append('cloud_name', 'doa7mkkpq');
-  //   this.productsService.uploadImage(data,
-  //   ).subscribe(response => {
-  //     this.url.push(response.secure_url)
-  //     console.log(this.url);
-  //   }
-  //   )
-  // }
 
-  // files: any[] = [];
-  // url: any = []
-  // onRemovem(event: any) {
-  //   console.log(event);
-  //   this.files.splice(this.files.indexOf(event), 1);
 
-  // }
 
   onhandledSubmit() {
     this.submitValue = true

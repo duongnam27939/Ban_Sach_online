@@ -118,6 +118,8 @@
             </div>
         </div>            
     </div>
-    <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls>
-      
+    <div *ngIf="similarProducts.length > tabSize">
+        <pagination-controls class="pagination" previousLabel="Trước" nextLabel="Tiếp" (pageChange)="onHandlesPage($event)"></pagination-controls>
+      </div>
+      <div class="hr"></div>
 </div>

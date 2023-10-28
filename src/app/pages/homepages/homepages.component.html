@@ -75,7 +75,7 @@
                         </div>
                         <div class="card_style d-flex ">
                           <p class="card-price">{{ formatCurrency(item.price) }} <del class="del_text"></del></p>
-                          <button class="btn_cart btn btn-danger" ><i class="cart_icon fa-solid fa-cart-shopping"></i></button>
+                          <button class="btn_cart btn btn-danger"><i class="cart_icon fa-solid fa-cart-shopping"></i></button>
                       </div>
                       </div>
                     </div>
@@ -83,6 +83,8 @@
 
           </div>
       </div>
-      <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls>
-      
+      <div *ngIf="products.length > tabSize">
+          <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls>
+          
+      </div>
   </aside>
