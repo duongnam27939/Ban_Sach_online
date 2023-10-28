@@ -59,18 +59,17 @@ export class ProductsComponent {
 
 
   removeId(_id: any) {
-    this.productsService.deleteProduct(_id).subscribe((products) => {
-      
-      Swal.fire({
-        title: 'Xác nhận xóa',
-        text: 'Bạn có chắc chắn muốn xóa sản phẩm?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'OK',
-        cancelButtonText: 'Hủy',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
+    Swal.fire({
+      title: 'Xác nhận xóa',
+      text: 'Bạn có chắc chắn muốn xóa sản phẩm?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Hủy',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productsService.deleteProduct(_id).subscribe(() => {
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -80,16 +79,16 @@ export class ProductsComponent {
             timer: 2000,
             iconHtml: '<i class="fas fa-check-circle"></i>'
           });
-          this.products = this.products.filter(item => item._id !== _id)
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire(
-            'Hủy bỏ',
-            'Sản phẩm không bị xóa.',
-            'info'
-          );
-        }
-      });
-    })
+          this.products = this.products.filter(item => item._id !== _id);
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Hủy bỏ',
+          'Sản phẩm không bị xóa.',
+          'info'
+        );
+      }
+    });
   }
 
 
