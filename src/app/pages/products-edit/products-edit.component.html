@@ -124,7 +124,27 @@
                 <div class="text-red-500" *ngIf="categoryForm.get('sale')?.hasError('required') && submitValue">Trường
                     bắt buộc,
                     vui lòng nhập dữ liệu.</div>
-                   
+
+                    
+                    <label for="HeadlineAct" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">
+                        images
+                      </label>
+                      <ngx-dropzone (change)="onSelectImage($event)" formControlName="images">
+                        <h1 style="margin-left: 5px; font-size: 11px;">Upload Main</h1>
+                        <img src="{{this.products.images}}" style="width: 100px;" alt="">
+                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemovem(f)">
+                            <ngx-dropzone-label *ngIf="this.url">
+                                {{ this.url| async}}
+                                {{f.name}}
+                            </ngx-dropzone-label>
+                            <ngx-dropzone-label *ngIf="!this.url">
+                                {{this.products.images|json}}
+                            </ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+                    </ngx-dropzone>
+                      <div class="text-red-500" *ngIf="categoryForm.get('images')?.hasError('required') && submitValue">Trường bắt
+                        buộc,
+                        vui lòng nhập dữ liệu.</div>
                 <div>
                     <label for="HeadlineAct" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">
                         Categorys

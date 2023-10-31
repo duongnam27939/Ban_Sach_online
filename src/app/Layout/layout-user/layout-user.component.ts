@@ -65,7 +65,7 @@ export class LayoutUserComponent {
           const productNameMatch = product.name.toLowerCase().includes(this.searchValue.toLowerCase());
           const authorNameMatch = product.author.toLowerCase().includes(this.searchValue.toLowerCase());
           return productNameMatch || authorNameMatch;
-        });
+                  });
         this.products = searchResults.slice(0, this.maxDisplayedProducts);
         this.showResults = true;
       });

@@ -40,7 +40,26 @@ export class ProductsAddComponent {
     })
   }
 
+  onSelectImage(event: any) {
+    this.files.push(...event.addedFiles);
+    const file_data = this.files[0];
+    const data = new FormData();
+    data.append('file', file_data);
+    data.append('upload_preset', 'upload');
+    data.append('cloud_name', 'doa7mkkpq');
+    this.productsService.uploadImage(data).subscribe(response => {
+      const imageUrl = response.secure_url;
+      this.categoryForm.patchValue({ images: imageUrl }); 
+    });
+  }
 
+  files: any[] = [];
+  url: any = []
+  onRemovem(event: any) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
+
+  }
 
 
   onhandledSubmit() {
