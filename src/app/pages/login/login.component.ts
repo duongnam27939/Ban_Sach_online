@@ -55,13 +55,7 @@ export class LoginComponent {
             confirmButtonText: 'OK',
             iconHtml: '<i class="fas fa-check-circle"></i>'
           });
-          if (data.auth.role == "admin") {
-            this.router.navigate(['/']);
-          } else {
             this.router.navigate(['/'])
-            
-          }
-
         },
 
       );

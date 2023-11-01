@@ -54,7 +54,7 @@ export class HomepagesComponent {
     console.log(event.target.value)
     this.page = 1
     this.onHandleSubmit()
-    console.log(this.onHandleSubmit());
+    // console.log(this.onHandleSubmit());
 
   }
 
@@ -74,5 +74,6 @@ export class HomepagesComponent {
     return formatter.format(value);
   }
 
+ 
   
 }

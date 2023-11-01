@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProducts } from 'src/app/interface/products';
-// import { AddToCartService } from 'src/app/service/add-to-cart.service';
 import { ProductsService } from 'src/app/service/products.service';
 import Swal from 'sweetalert2';
 
@@ -16,7 +15,8 @@ export class LayoutUserComponent {
   products!: IProducts[]
   maxDisplayedProducts: number = 5;
   showResults: boolean = false;
-  carts: any = []
+  isDropdownOpen = false;
+  
 
 
   constructor(private router: Router,
@@ -25,11 +25,25 @@ export class LayoutUserComponent {
   ) { }
   userName = localStorage.getItem('userName');
   role = localStorage.getItem('role');
+  email = localStorage.getItem('email');
+  
   showAdmin = true;
+
+  toggleDropdown(event: Event) {
+    event.stopPropagation();
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+  @HostListener('document:click', ['$event'])
+  outsideClick(event: Event) {
+    if (!(event.target as HTMLElement).closest('.avatar')) {
+      this.isDropdownOpen = false;
+    }
+  }
+  
   logout() {
     Swal.fire({
       title: 'Đăng xuất',
-      text: "Bạn chắc là muốn Đăng xuất chứ ?",
+      text: "Bạn chắc là muốn Đăng xuất chứ?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -42,18 +56,18 @@ export class LayoutUserComponent {
         localStorage.removeItem('token');
         localStorage.removeItem('userName');
         localStorage.removeItem('role');
-
+  
         this.userName = null;
         this.role = null;
+        this.isDropdownOpen = false; // Đặt lại trạng thái dropdown menu thành false sau khi đăng xuất
+  
         Swal.fire(
           'Đăng xuất!',
           'Đăng xuất thành công',
           'success'
-        )
+        );
       }
-    })
-
-
+    });
   }
 
   onSearch() {

@@ -1,68 +1,108 @@
 <nav>
     <div class="item">
-      <ul class="nav_ul">
-        <li class="nav_li">
-          <a href="#">
-            <i class="fa-solid fa-circle-info"></i>
-            Trợ giúp
-          </a>
-        </li>
-        <li class="nav_li">
-          <a href="#">
-            <i class="fa-solid fa-newspaper"></i>
-            Tin tức
-          </a>
-        </li>
-        <li class="nav_li">
-          <a href="#">
-            <i class="fa-solid fa-tag"></i>
-            Khuyến mãi
-          </a>
-        </li>
-      </ul>
+        <ul class="nav_ul">
+            <li class="nav_li">
+                <a href="#">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Trợ giúp
+                </a>
+            </li>
+            <li class="nav_li">
+                <a href="#">
+                    <i class="fa-solid fa-newspaper"></i>
+                    Tin tức
+                </a>
+            </li>
+            <li class="nav_li">
+                <a href="#">
+                    <i class="fa-solid fa-tag"></i>
+                    Khuyến mãi
+                </a>
+            </li>
+        </ul>
     </div>
     <div class="items">
-      <ul class="nav_ul">
-        <li class="nav_li">
-          <a href="#">
-            <i class="fa-solid fa-gift"></i>
-            Ưu đãi & tiện ích
-          </a>
-        </li>
-        <li class="nav_li">
-          <a href="#">
-            <i class="fa-solid fa-box"></i>
-            Kiểm tra đơn hàng
-          </a>
-        </li>
-        <li class="nav_li" *ngIf="userName">
-            <a>
-                <h1 class="text_name" *ngIf="userName">{{ userName }} 
-                </h1>
-            </a>
-          </li>
-        
-        <li class="nav_li" *ngIf="userName">
-          <button class="click_btn" (click)="logout()">
-            <i class="fa-solid fa-arrow-right-to-bracket"></i>
-            Đăng xuất
-          </button>
-        </li>
-        <li class="nav_li" *ngIf="!userName">
-          <a href="login">
-            <i class="fa-solid fa-arrow-right-to-bracket"></i>
-            Đăng nhập
-          </a>
-        </li>
-        <li class="nav_li" *ngIf="!userName">
-          <a href="sigup">
-            <i class="fa-regular fa-user"></i>
-            Đăng kí
-          </a>
-        </li>
-      </ul>
+        <ul class="nav_ul">
+            <li class="nav_li">
+                <a href="#">
+                    <i class="fa-solid fa-gift"></i>
+                    Ưu đãi & tiện ích
+                </a>
+            </li>
+            <li class="nav_li">
+                <a href="#">
+                    <i class="fa-solid fa-box"></i>
+                    Kiểm tra đơn hàng
+                </a>
+            </li>
+            <li class="nav_li" *ngIf="userName">
+                <a href="cart" class="cart-hover">
+                    <i class=" fa-solid fa-cart-shopping"></i>
+                    Giỏ hàng
+                </a>
+            </li>
+            <li class="nav_li" *ngIf="!userName">
+                <a href="login">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    Đăng nhập
+                </a>
+            </li>
+            <li class="nav_li" *ngIf="!userName">
+                <a href="sigup">
+                    <i class="fa-regular fa-user"></i>
+                    Đăng kí
+                </a>
+            </li>
+            <div class="avatar flex items-center" (click)="toggleDropdown($event)">
+                <div class="flex items-center ml-3">
+                    <div *ngIf="userName" class="relative">
+                        <button type="button"
+                            class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                            aria-expanded="false" [attr.data-dropdown-toggle]="'dropdown-user'">
+                            <span class="sr-only">Open user menu</span>
+                            <img class="w-8 h-8 rounded-full"
+                                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                        </button>
+                        <div [class.hidden]="!isDropdownOpen"
+                            class="z-50 absolute top-full left-[-69px] mt-2 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                            [attr.id]="'dropdown-user'">
+                            <div class="px-4 py-3" role="none">
+                                <div class="d-flex align-items: center ">
+                                    <img class="w-8 h-8 rounded-full"
+                                    src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                                    <p class="text-name text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                                         {{userName}}
+                                    </p>
+                                </div>
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                                    {{email}}
+                                </p>
+                            </div>
+                            <ul class="py-1" role="none" *ngIf="this.role==='admin'">
+                                <li *ngIf="userName">
+                                    <a href="admin" class="admin-products w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 
+                                           dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem">
+                                        Quản lý
+                                </a>
+                                </li>
+                            </ul>
+                            <ul class="py-1" role="none">
+                                <li *ngIf="userName">
+                                    <button (click)="logout()"
+                                        class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem">Đăng xuất
+                                    </button>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ul>
     </div>
-  </nav>
+</nav>
 
 <header>
     <div class="logo">
