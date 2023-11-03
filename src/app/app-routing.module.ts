@@ -18,6 +18,7 @@ import { ProductsSearchComponent } from './pages/products-search/products-search
 import { SignupComponent } from './pages/signup/signup.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { ProductsDetailadminComponent } from './pages/products-detailadmin/products-detailadmin.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 
@@ -43,7 +44,9 @@ const routes: Routes = [
       { path: 'products/:id/edit', component: ProductsEditComponent },
       { path: 'user', component: ListUserComponent },
       { path: 'user/:id/edit', component: UserEditComponent },
-      {path:"products/:id",component: ProductsDetailadminComponent}
+      {path:"products/:id",component: ProductsDetailadminComponent},
+      {path: "dashboard", component: DashboardComponent}
+
     ]
   },
   { path: 'sigup', component: SignupComponent },

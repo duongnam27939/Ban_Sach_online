@@ -29,6 +29,7 @@ import { ProductsSearchComponent } from './pages/products-search/products-search
 import { SignupComponent } from './pages/signup/signup.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { ProductsDetailadminComponent } from './pages/products-detailadmin/products-detailadmin.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 
@@ -53,6 +54,7 @@ import { ProductsDetailadminComponent } from './pages/products-detailadmin/produ
     SignupComponent,
     UserEditComponent,
     ProductsDetailadminComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,10 +22,10 @@ export class CategoryComponent {
   count:number=0
 
 
-  constructor(private category: CategoryService,
+  constructor(private categoryService: CategoryService,
     private route: ActivatedRoute,
     private routers: Router) {
-    this.category.getAllCategory().subscribe((response: any) => {
+    this.categoryService.getAllCategory().subscribe((response: any) => {
       this.categorys = response.data
       console.log(response.data);
       this.allCategory = response.data
@@ -33,9 +33,9 @@ export class CategoryComponent {
   }
 
   onHandleSubmit(){
-    this.category.getAllCategory().subscribe((response: any) => {
+    this.categoryService.getAllCategory().subscribe((response: any) => {
       console.log(response.data)
-      this.category = response.data
+      this.categorys = response.data
       this.allCategory = response.data
     }
     )
@@ -56,50 +56,52 @@ export class CategoryComponent {
   }
 
   removeId(_id: any) {
-    this.category.deleteCategory(_id).subscribe((data) => {
-      Swal.fire({
-        title: 'Xác nhận xóa',
-        text: 'Bạn có chắc chắn muốn xóa Danh mục?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'OK',
-        cancelButtonText: 'Hủy',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
+    Swal.fire({
+      title: 'Xác nhận xóa',
+      text: 'Bạn có chắc chắn muốn xóa sản phẩm?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Hủy',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoryService.deleteCategory(_id).subscribe(() => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Xóa danh mục thành công',
-            text: 'Danh mục đã được xóa thành công!',
+            title: 'Xóa sản phẩm thành công',
+            text: 'Sản phẩm đã được xóa thành công!',
             showConfirmButton: false,
             timer: 2000,
             iconHtml: '<i class="fas fa-check-circle"></i>'
           });
-          this.categorys = this.categorys.filter(item => item._id !== _id)
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire(
-            'Hủy bỏ',
-            'Dữ liệu không bị xóa.',
-            'info'
-          );
-        }
-      });
-    })
+          this.categorys = this.categorys.filter(item => item._id !== _id);
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Hủy bỏ',
+          'Sản phẩm không bị xóa.',
+          'info'
+        );
+      }
+    });
   }
+
+  
 
 
   onSearch() {
     console.log(`category:`, this.searchValue);
     this.isShown = true;
     if (this.searchValue === "") {
-      this.category.getAllCategory().subscribe((response: any) => {
+      this.categoryService.getAllCategory().subscribe((response: any) => {
         this.categorys = response.data
         console.log(response.data);
 
       })
     } else {
-      this.category.getAllCategory().subscribe((response: any) => {
+      this.categoryService.getAllCategory().subscribe((response: any) => {
         this.categorys = response.data.filter((data: any) => {
           return data.name.toLowerCase().includes(this.searchValue.toLowerCase());
         });
