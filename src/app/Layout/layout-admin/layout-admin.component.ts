@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -14,6 +14,8 @@ export class LayoutAdminComponent {
   email = localStorage.getItem('email');
   isLoggedIn = localStorage.getItem('isLoggedIn')
   showAdmin = true;
+  showResults: boolean = false;
+  isDropdownOpen = false;
 
   constructor(private router: Router,) {
     
@@ -21,6 +23,17 @@ export class LayoutAdminComponent {
   }
 
 
+  toggleDropdown(event: Event) {
+    event.stopPropagation();
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+  @HostListener('document:click', ['$event'])
+  outsideClick(event: Event) {
+    if (!(event.target as HTMLElement).closest('.avatar')) {
+      this.isDropdownOpen = false;
+    }
+  }
+  
   logout() {
     Swal.fire({
       title: 'Đăng xuất',
@@ -40,6 +53,7 @@ export class LayoutAdminComponent {
   
         this.userName = null;
         this.role = null;
+        this.isDropdownOpen = false; // Đặt lại trạng thái dropdown menu thành false sau khi đăng xuất
   
         Swal.fire(
           'Đăng xuất!',

@@ -2,19 +2,19 @@
     <div class="item">
         <ul class="nav_ul">
             <li class="nav_li">
-                <a href="#">
+                <a routerLink="#">
                     <i class="fa-solid fa-circle-info"></i>
                     Trợ giúp
                 </a>
             </li>
             <li class="nav_li">
-                <a href="#">
+                <a routerLink="#">
                     <i class="fa-solid fa-newspaper"></i>
                     Tin tức
                 </a>
             </li>
             <li class="nav_li">
-                <a href="#">
+                <a routerLink="#">
                     <i class="fa-solid fa-tag"></i>
                     Khuyến mãi
                 </a>
@@ -24,30 +24,31 @@
     <div class="items">
         <ul class="nav_ul">
             <li class="nav_li">
-                <a href="#">
+                <a routerLink="#">
                     <i class="fa-solid fa-gift"></i>
                     Ưu đãi & tiện ích
                 </a>
             </li>
+            
             <li class="nav_li">
-                <a href="#">
+                <a routerLink="#">
                     <i class="fa-solid fa-box"></i>
                     Kiểm tra đơn hàng
                 </a>
             </li>
             <li class="nav_li" *ngIf="userName">
-                <a href="cart" class="cart-hover">
+                <a routerLink="cart" class="cart-hover">
                     <i class=" fa-solid fa-cart-shopping"></i>
                     Giỏ hàng
                 </a>
             </li>
-            <li class="nav_li" *ngIf="!userName">
+            <li routerLink="nav_li" *ngIf="!userName" >
                 <a href="login">
                     <i class="fa-solid fa-arrow-right-to-bracket"></i>
                     Đăng nhập
                 </a>
             </li>
-            <li class="nav_li" *ngIf="!userName">
+            <li class="nav_li" *ngIf="!userName" class="dangnhap">
                 <a href="sigup">
                     <i class="fa-regular fa-user"></i>
                     Đăng kí
@@ -80,7 +81,7 @@
                             </div>
                             <ul class="py-1" role="none" *ngIf="this.role==='admin'">
                                 <li *ngIf="userName">
-                                    <a href="admin" class="admin-products w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 
+                                    <a routerLink="admin/dashboard" class="admin-products w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 
                                            dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">
                                         Quản lý
@@ -149,8 +150,8 @@
             </div>
         </div>
 
-        <div class="cart">
-            <a href="cart" class="cart-hover">
+        <div class="cart" >
+            <a routerLink="cart" class="cart-hover">
                 <div class="cart_1">
                     <i class="cart_icon fa-solid fa-cart-shopping"></i>
                     <p class="cart_text">Giỏ hàng</p>

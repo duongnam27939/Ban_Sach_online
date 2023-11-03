@@ -53,36 +53,36 @@ export class ListUserComponent {
 
 
   removeId(_id: any) {
-    this.userService.removeUser(_id).subscribe((data) => {
-      Swal.fire({
-        title: 'Xác nhận xóa',
-        text: 'Bạn có chắc chắn muốn xóa tài khoản này ko?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'OK',
-        cancelButtonText: 'Hủy',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
+    Swal.fire({
+      title: 'Xác nhận xóa',
+      text: 'Bạn có chắc chắn muốn xóa sản phẩm?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Hủy',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.removeUser(_id).subscribe(() => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Xóa sản tài khoản thành công',
-            text: 'Tài khoản đã được xóa thành công!',
+            title: 'Xóa sản phẩm thành công',
+            text: 'Sản phẩm đã được xóa thành công!',
             showConfirmButton: false,
             timer: 2000,
             iconHtml: '<i class="fas fa-check-circle"></i>'
           });
-          this.user = this.user.filter(item => item._id !== _id)
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire(
-            'Hủy bỏ',
-            'Dữ liệu không bị xóa.',
-            'info'
-          );
-        }
-      });
-    })
+          this.user = this.user.filter(item => item._id !== _id);
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Hủy bỏ',
+          'Sản phẩm không bị xóa.',
+          'info'
+        );
+      }
+    });
   }
 
 
