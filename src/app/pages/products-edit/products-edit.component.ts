@@ -26,6 +26,11 @@ export class ProductsEditComponent {
     sale: [0, [Validators.required]],
     tags:['',[Validators.required]],
     status: ['', [Validators.required]],
+    company:['', [Validators.required]],
+    numberpages:[0, [Validators.required]],
+    size:['', [Validators.required]],
+    publish:['', [Validators.required]],
+    mass:[0, [Validators.required]]
   })
 
   constructor(
@@ -57,7 +62,12 @@ export class ProductsEditComponent {
           sale:response.products.sale,
           quantity:response.products.quantity,
           tags:response.products.tags,
-          status:response.products.status
+          status:response.products.status,
+          company:response.products.company,
+          numberpages:response.products.numberpages,
+          size:response.products.size,
+          publish:response.products.publish,
+          mass:response.products.mass
         })
         
       })
@@ -103,6 +113,11 @@ export class ProductsEditComponent {
         sale: this.categoryForm.value.sale || 0,
         tags:this.categoryForm.value.tags || '',
         status:this.categoryForm.value.status || '',
+        company:this.categoryForm.value.company || '',
+        numberpages:this.categoryForm.value.numberpages || 0,
+        size:this.categoryForm.value.size || '',
+        publish:this.categoryForm.value.publish || '',
+        mass:this.categoryForm.value.mass || 0,
         categoryId: this.categoryForm.value.categoryId || '',
         
       }

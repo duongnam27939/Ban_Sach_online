@@ -5,40 +5,40 @@
         <p class="text-center text-lg font-medium">Thêm Sản Phẩm</p>
   
         <div>
-          <label for="Name" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+          <label for="Name" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Tên sản phẩm</label>
   
           <div class="relative">
             <input type="name" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
               rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
                p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="name"
-              placeholder="Name">
+              placeholder="Tên sản phẩm">
           </div>
           <div class="text-red-500" *ngIf="categoryForm.get('name')?.hasError('required') && submitValue">Trường bắt buộc,
             vui lòng nhập dữ liệu.</div>
   
-          <label for="author" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Author</label>
+          <label for="author" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Tác Giả</label>
   
           <div class="relative">
             <input type="author" name="author" id="author" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
               rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
                p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="author"
-              placeholder="author">
+              placeholder="Tác Giả">
           </div>
           <div class="text-red-500" *ngIf="categoryForm.get('author')?.hasError('required') && submitValue">Trường bắt
             buộc,
             vui lòng nhập dữ liệu.</div>
   
   
-          <label for="price" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+          <label for="price" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Giá tiền</label>
   
           <div class="relative">
             <input type="price" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
               rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
                p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="price"
-              placeholder="Price">
+              placeholder="Giá tiền">
           </div>
           <div class="text-red-500" *ngIf="categoryForm.get('price')?.hasError('required') && submitValue">Trường bắt
             buộc,
@@ -58,14 +58,14 @@
             vui lòng nhập dữ liệu.</div>
   
           <label for="description"
-            class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+            class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Mô tả</label>
   
           <div class="relative">
             <input type="description" name="description" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
               rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
                p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="description"
-              placeholder="description">
+              placeholder="Mô tả">
           </div>
           <div class="text-red-500" *ngIf="categoryForm.get('description')?.hasError('required') && submitValue">Trường
             bắt buộc,
@@ -73,14 +73,14 @@
   
   
           <label for="HeadlineAct" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">
-            Status
+            Trạng thái
           </label>
   
           <select name="HeadlineAct" id="HeadlineAct" formControlName="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
             rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
              p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
               dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="">Trạng thái</option>
+            <option value="">Vui lòng chọn Trạng thái</option>
             <option value="Còn Hàng">Còn Hàng</option>
             <option value="Sắp có hàng">Sắp có hàng</option>
             <option value="Đang cập nhập">Đang cập nhập</option>
@@ -88,33 +88,33 @@
           </select>
           <div class="text-red-500" *ngIf="categoryForm.get('status')?.hasError('required') && submitValue">Trường
             bắt buộc,vui lòng nhập dữ liệu.</div>
-          <label for="quantity" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">quantity</label>
+          <label for="quantity" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Số lượng sản phẩm</label>
   
           <div class="relative">
             <input type="number" name="quantity" id="quantity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
               rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
                p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="quantity"
-              placeholder="0">
+              placeholder="Số lượng sản phẩm">
           </div>
           <div class="text-red-500" *ngIf="categoryForm.get('quantity')?.hasError('required') && submitValue">Trường bắt
             buộc,
             vui lòng nhập dữ liệu.</div>
-          <label for="sale" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Sale</label>
+          <label for="sale" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Giảm giá</label>
   
           <div class="relative">
             <input type="sale" name="sale" id="sale" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
               rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
                p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="sale"
-              placeholder="sale">
+              placeholder="Giảm giá">
           </div>
           <div class="text-red-500" *ngIf="categoryForm.get('sale')?.hasError('required') && submitValue">Trường bắt buộc,
             vui lòng nhập dữ liệu.</div>
             
 
             <label for="HeadlineAct" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">
-              images
+              Hình ảnh
             </label>
             <ngx-dropzone (change)="onSelectImage($event)" formControlName="images">
               <h1 style="margin-left: 5px; font-size: 11px;">Upload Main</h1>
@@ -131,14 +131,14 @@
             
           <div>
             <label for="HeadlineAct" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">
-              Categorys
+              Danh mục
             </label>
   
             <select name="HeadlineAct" id="HeadlineAct" formControlName="categoryId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
                   rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
                    p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                     dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              <option value="">Please select categorys</option>
+              <option value="">Vui lòng chọn danh mục</option>
               <option *ngFor="let item of category" [ngValue]="item._id">
                 {{item.name}}
               </option>
@@ -148,6 +148,69 @@
             buộc,
             vui lòng nhập dữ liệu.</div>
         </div>
+        <label for="company" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Nhà xuất bản</label>
+  
+          <div class="relative">
+            <input type="company" name="company" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
+              rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
+               p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="company"
+              placeholder="Nhà xuất bản">
+          </div>
+          <div class="text-red-500" *ngIf="categoryForm.get('company')?.hasError('required') && submitValue">Trường bắt
+            buộc,
+            vui lòng nhập dữ liệu.</div>
+
+            <label for="numberpages" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Số Trang</label>
+          <div class="relative">
+            <input type="numberpages" name="numberpages" id="numberpages" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
+              rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
+               p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="numberpages"
+              placeholder="Số Trang">
+          </div>
+          <div class="text-red-500" *ngIf="categoryForm.get('numberpages')?.hasError('required') && submitValue">Trường bắt
+            buộc,
+            vui lòng nhập dữ liệu.</div>
+            <label for="size" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Kích thước</label>
+  
+          <div class="relative">
+            <input type="size" name="size" id="size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
+              rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
+               p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="size"
+              placeholder="Kích Thước">
+          </div>
+          <div class="text-red-500" *ngIf="categoryForm.get('size')?.hasError('required') && submitValue">Trường bắt
+            buộc,
+            vui lòng nhập dữ liệu.</div>
+            <label for="price" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Năm xuất bản</label>
+  
+          <div class="relative">
+            <input type="publish" name="publish" id="publish" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
+              rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
+               p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="publish"
+              placeholder="Năm xuất bản">
+          </div>
+          <div class="text-red-500" *ngIf="categoryForm.get('publish')?.hasError('required') && submitValue">Trường bắt
+            buộc,
+            vui lòng nhập dữ liệu.</div>
+
+
+            <label for="mass" class="block mb-2 m-1 text-sm font-medium text-gray-900 dark:text-white">Khối lượng sản phẩm</label>
+  
+            <div class="relative">
+              <input type="mass" name="mass" id="mass" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm 
+                rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
+                 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="mass"
+                placeholder="Khối lượng sản phẩm">
+            </div>
+            <div class="text-red-500" *ngIf="categoryForm.get('mass')?.hasError('required') && submitValue">Trường bắt
+              buộc,
+              vui lòng nhập dữ liệu.</div>
+        
         <button type="submit" class="mt-4 rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white">
           Thêm
         </button>
