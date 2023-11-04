@@ -26,6 +26,11 @@ export class ProductsAddComponent {
     sale: [0, [Validators.required]],
     tags:['',[Validators.required]],
     status:['',[Validators.required]],
+    company:['', [Validators.required]],
+    numberpages:[0, [Validators.required]],
+    size:['', [Validators.required]],
+    publish:['', [Validators.required]],
+    mass:[0, [Validators.required]],
   })
 
   constructor(
@@ -75,6 +80,11 @@ export class ProductsAddComponent {
         sale: this.categoryForm.value.sale || 0,
         tags:this.categoryForm.value.tags || '',
         status:this.categoryForm.value.status || '',
+        company:this.categoryForm.value.company || '',
+        numberpages:this.categoryForm.value.numberpages || 0,
+        size:this.categoryForm.value.size || '',
+        publish:this.categoryForm.value.publish || '',
+        mass:this.categoryForm.value.mass || 0,
         categoryId: this.categoryForm.value.categoryId || '',
         
       }

@@ -10,5 +10,11 @@ export interface IProducts{
     status:string;
     categoryId: any,
     data?: string,
+    company:string
+    numberpages: number,
+    size:string;
+    publish:string;
+    mass:number
     images?: string,
+
 }
