@@ -8,6 +8,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent {
- 
+  
   
 }
