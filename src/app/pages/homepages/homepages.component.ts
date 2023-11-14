@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ICategory } from 'src/app/interface/category';
 import { IProducts } from 'src/app/interface/products';
-import { AddToCartService } from 'src/app/service/add-to-cart.service';
+import { CartService } from 'src/app/service/cart.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductsService } from 'src/app/service/products.service';
-import Swal from 'sweetalert2';
 
 
 @Component({
@@ -14,11 +15,13 @@ import Swal from 'sweetalert2';
 })
 export class HomepagesComponent {
 
-  products!: IProducts[]
-  category?: ICategory[]
+  products: any = null
+  category: any= null
   allCategory!: ICategory[];
-  carts: any = this.cartService.getToCart()
-  index!: any
+  user: any = null
+  cartItem: any = null
+  quantity: number = 1
+ 
 
 
   page: number = 1;
@@ -27,7 +30,9 @@ export class HomepagesComponent {
   count: number = 0
   constructor(private productsSevri: ProductsService,
     private cate: CategoryService,
-    private cartService: AddToCartService) {
+    private cartService: CartService,
+    private navigate: Router,
+    private toastr: ToastrService) {
     this.productsSevri.getAllProducts().subscribe((response: any) => {
       this.products = response.products.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
       // console.log(response.products);
@@ -75,36 +80,25 @@ export class HomepagesComponent {
   }
 
 
-  //  cart
-  addToCart(item: any) {
-    this.index = this.carts.findIndex((i: any) => {
-      return i._id === item._id
-    })
-    if (this.index >= 0) {
-      this.carts[parseInt(this.index)].quantity += 1
-    } else {
-      const cartItem: any = {
-        _id: item._id,
-        name: item.name,
-        images: item.images,
-        price: item.priceSale ? item.priceSale : item.price,
-        quantity: 1,
-        subtotal: function () {
-          return this.price * this.quantity
-        }
-      }
-      this.carts.push(cartItem)
-
+  handleAddToCart() {
+    this.user = JSON.parse(localStorage.getItem("user") as string)?.data
+    if (!this.user) {
+      this.toastr.info("Bạn cần đăng nhập để thực hiện hàng động này", "Nhắc nhở")
     }
+    else {
+      const cartItem = {
+        userId: this.user._id, 
+        productId: this.products._id, 
+        quantity: 1, 
+        total: this.products.price / 100 * (100 - this.products.price)
+      }
 
-    this.cartService.saveCart(this.carts)
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Add to Cart success',
-      showConfirmButton: false,
-      timer: 1500
-    })
+      this.cartService.create(cartItem).subscribe((resp) => {
+        this.toastr.success(resp.message,"Chúc mừng")
+        this.navigate.navigate(['/cart'])
+      })
+      
+    }
   }
 
 

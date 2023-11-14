@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AddToCartService } from 'src/app/service/add-to-cart.service';
+import { CartService } from 'src/app/service/cart.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,74 +8,39 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent {
-  carts: any = []
-
-  totalPrice: number = this.addToCartService.getAllPrice()
-
-  constructor(private addToCartService: AddToCartService) {
-    this.carts = this.addToCartService.getToCart()
-
-  };
-
-  subtotal(cart: any) {
-    return cart.quantity * cart.price
+  cartItems: any;
+  constructor(private cartService: CartService){}
+  ngOnInit() {
+    this.loadCartItems();
   }
 
-  updateQTL(i: number, event: any) {
-    let newQuantity = parseInt(event.target.value);
-    newQuantity = newQuantity > 0 ? newQuantity : 1;
-    event.target.value = newQuantity;
-    this.carts[i].quantity = newQuantity;
-    this.addToCartService.saveCart(this.carts)
-    this.totalPrice = this.addToCartService.getAllPrice()
-
-  }
-
-  removeCart(i: number) {
-    Swal.fire({
-      title: 'Delete?',
-      text: "Bạn chắc là muốn xóa chứ ?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.carts.splice(i, 1)
-        this.addToCartService.saveCart(this.carts)
-        Swal.fire(
-          'Deleted!',
-          'Sản phẩm đã được xóa',
-          'success'
-        )
+  loadCartItems() {
+    this.cartService.get().subscribe(
+      (data: any) => {
+        this.cartItems = data.cartItems;
+        console.log(data.cartItems);
+        
+      },
+      (error: any) => {
+        console.error('Failed to load cart items:', error);
       }
-    })
+    );
   }
 
-  clearCart() {
-    Swal.fire({
-      title: 'Delete All?',
-      text: "Bạn chắc là muốn xóa tất cả chứ ?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        sessionStorage.clear();
-        this.carts = []
-        Swal.fire(
-          'Deleted!',
-          'Sản phẩm đã được xóa',
-          'success'
-        )
+  removeFromCart(productId: string) {
+    this.cartService.delete(productId).subscribe(
+      (response: any) => {
+        // Handle the response if needed
+        console.log('Removed from cart:', response);
+        // Refresh the cart items
+        this.loadCartItems();
+      },
+      (error: any) => {
+        // Handle error if needed
+        console.error('Failed to remove from cart:', error);
       }
-    })
-
+    );
   }
-
 
   formatCurrency(value: number): string {
     const formatter = new Intl.NumberFormat('vi-VN', {
@@ -86,5 +51,12 @@ export class CartComponent {
 
     return formatter.format(value);
   }
-  
+
+
+  calculateTotal(): number {
+    return this.cartItems.reduce((total:any, item:any) => total + (item.price * item.quantity), 0);
+  }
+
+
+
 }
