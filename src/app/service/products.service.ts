@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IProducts } from '../interface/products';
-import { ICategory } from '../interface/category';
+
+
 
 
 
@@ -27,34 +27,34 @@ export class ProductsService {
     private http: HttpClient
   ) { }
 
-  getAllProducts(): Observable<IProducts[]> {
+  getAllProducts(): Observable<any[]> {
     const url = `${this.API}/products`;
-    return this.http.get<IProducts[]>(url, this.httpOptions)
+    return this.http.get<any[]>(url, this.httpOptions)
   }
 
-  getProduct(_id: string | null): Observable<IProducts> {
+  getProduct(_id: string | null): Observable<any> {
     const url = `${this.API}/products/${_id}`;
-    return this.http.get<IProducts>(url, this.httpOptions)
+    return this.http.get<any>(url, this.httpOptions)
   }
 
-  addProduct(products: IProducts): Observable<IProducts> {
+  addProduct(products: any): Observable<any> {
     const url = `${this.API}/products`;
-    return this.http.post<IProducts>(url, products, this.httpOptions)
+    return this.http.post<any>(url, products, this.httpOptions)
   }
 
-  getCategory(): Observable<ICategory> {
+  getCategory(): Observable<any> {
     const url = `${this.API}/category`;
-    return this.http.get<ICategory>(url, this.httpOptions)
+    return this.http.get<any>(url, this.httpOptions)
   }
 
-  updateProduct(products: IProducts): Observable<IProducts> {
+  updateProduct(products: any): Observable<any> {
     const url = `${this.API}/products/${products._id}`;
-    return this.http.patch<IProducts>(url, products, this.httpOptions);
+    return this.http.patch<any>(url, products, this.httpOptions);
   }
 
-  deleteProduct(id: string | null): Observable<IProducts> {
+  deleteProduct(id: string | null): Observable<any> {
     const url = `${this.API}/products/${id}`;
-    return this.http.delete<IProducts>(url, this.httpOptions)
+    return this.http.delete<any>(url, this.httpOptions)
   }
 
 

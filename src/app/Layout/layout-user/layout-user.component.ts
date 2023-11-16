@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IProducts } from 'src/app/interface/products';
+
 import { ProductsService } from 'src/app/service/products.service';
 import Swal from 'sweetalert2';
 
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class LayoutUserComponent {
   searchValue: any;
   isShown: boolean = true
-  products!: IProducts[]
+  products: any= null
   maxDisplayedProducts: number = 5;
   showResults: boolean = false;
   isDropdownOpen = false;
@@ -26,6 +26,7 @@ export class LayoutUserComponent {
   userName = localStorage.getItem('userName');
   role = localStorage.getItem('role');
   email = localStorage.getItem('email');
+  token = localStorage.getItem('token');
   
   showAdmin = true;
 
@@ -55,7 +56,9 @@ export class LayoutUserComponent {
         // Xóa token khỏi local storage
         localStorage.removeItem('token');
         localStorage.removeItem('userName');
-        localStorage.removeItem('role');
+        localStorage.removeItem('user');
+        
+        
   
         this.userName = null;
         this.role = null;
@@ -97,7 +100,7 @@ export class LayoutUserComponent {
     this.isShown = false;
   }
 
-  onClick(item: IProducts) {
+  onClick(item: any) {
     this.isShown = !this.isShown;
     this.router.navigate(['/pages-detail', item._id]).then(() => {
       window.location.reload();

@@ -1,40 +1,48 @@
-<table class="table" style="width: 90%; text-align: center; margin: 0 auto" *ngIf="cartItems.length > 0">
-    <thead>
-        <tr>
-            <th scope=" col">#</th>
-            <th scope="col">Images</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">quantity</th>
-            <th scope="col">Thành tiền</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of cartItems ;index as i">
-            <td>{{i +1}}</td>
-            <td><img src="{{item.productId.images}}" width="50px" height="50px"></td>
-            <td class="text-cart">{{item.productId.name}}</td>
-            <td>{{ formatCurrency(item.productId.price) }}</td>
-            <td>{{  item.quantity  }}</td>
-            <td>{{ formatCurrency(item.productId.price * item.quantity) }}</td>
-            <td><button (click)="removeFromCart(item.productId._id!)" class="btn btn-danger">Xóa</button></td>
-        </tr>
+<ng-container *ngIf="cartList && cartList.cartItems.length > 0; else emptyCart">
+    <table class="table" style="width: 90%; text-align: center; margin: 0 auto">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Images</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Thành tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cartList.cartItems; index as i">
+                <td>{{ i + 1 }}</td>
+                <td><img src="{{ item.productId.images }}" width="50px" height="50px"></td>
+                <td class="text-cart">{{ item.productId.name }}</td>
+                <td>{{ formatCurrency(item.productId.price) }}</td>
+                <td>
+                    <button (click)="handleBot(item.productId._id, item.quantity, item.productId.price)"
+                        class="px-[12px] py-[1px] rounded border-[1px] min-w-[32px]">-</button>
+                    <input type="number" disabled [value]="item.quantity"
+                        class="mx-[6px] w-[70px] pl-[12px] rounded bg-[#eeeeee]">
+                    <button (click)="handleThem(item.productId._id, item.quantity, item.productId.price)"
+                        class="px-[12px] py-[1px] rounded border-[1px] min-w-[32px]">+</button>
+                </td>
+                <td>{{ formatCurrency(item.productId.price * item.quantity) }}</td>
+                <td><button (click)="handleRemove(item._id!)" class="btn btn-danger">Xóa</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="padding-top: 30px; width: 100%; text-align: center;">
+        Tổng thanh toán: <span style="font-size: 20px;">{{ formatCurrency(totalPrice) }}</span>
+        <a routerLink="/" class=".text_left btn btn-success">Thanh toán</a>
+    </div>
+</ng-container>
 
-    </tbody>
+<ng-template #emptyCart>
+    <div style="text-align: center; margin: 10px 0px 40px 0px; background-color: rgb(226, 167, 167);">
+        Giỏ hàng rỗng, <a href="/" style="color: rgb(70, 70, 211); text-decoration: underline;">mua hàng tại đây!</a>
+    </div>
+</ng-template>
 
-</table>
-<div style=" padding-top: 30px; width: 100%;text-align: center;" *ngIf="cartItems.length > 0">
-    Tổng thanh toán: <span style="font-size: 20px;">
-         {{ calculateTotal() }}
-    </span><a routerLink="/" class="btn btn-success">Thanh toán</a>
-</div>
-<div *ngIf="cartItems.length ===0"
-    style="text-align: center; margin: 10px 0px 40px 0px; background-color: rgb(226, 167, 167);">
-    Giỏ hàng rỗng , <a href="/" style="color: rgb(70, 70, 211); text-decoration: underline;">mua hàng tại đây !</a>
-</div>
-<div style="text-align: center;margin: 40px 0px;" *ngIf="cartItems.length > 0">
-    <a routerLink="/" class="text_left btn btn-primary">tiếp tục mua hàng</a>
-    <button class="cart_again btn btn-danger" 
-    >Xóa tất cả</button>
+<div style="text-align: center;margin: 16px 0px;">
+    <a routerLink="/" class="text_left btn btn-primary">Tiếp tục mua hàng</a>
+    <button class="cart_again btn btn-danger">Xóa tất cả</button>
 </div>

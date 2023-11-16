@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/interface/auth';
 import { AuthService } from 'src/app/service/auth.service';
 import Swal from 'sweetalert2';
@@ -11,55 +12,57 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  isMatch: boolean = false
 
-
-  user!: any
-
-  loginForm = this.fb.group({
-    email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-    password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8)])),
-  });
+  user: any = null;
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private auth: AuthService,
-    private router: Router
-  ) { }
-  get checkValidate() {
-    return this.loginForm.controls
-  }
+    private router: Router,
+    private toastr: ToastrService
+  ) { this.user = JSON.parse(localStorage.getItem("user") as string) || null }
+  formSigninValue = this.formBuilder.group({
+    email: [null, [Validators.required]],
+    password: [null, [Validators.required]],
+  })
 
-  onHandleSubmit() {
-    if (this.loginForm.valid) {
-      const user: User = {
-        email: this.loginForm.value.email || '',
-        password: this.loginForm.value.password || ''
-      };
-      this.auth.login(user).subscribe(
-        (data: any) => {
-          console.log(data.auth.email);
-          
-          
-          // localStorage.setItem("user", JSON.stringify(data));
-          localStorage.setItem('isLoggedIn', 'true'); 
-          localStorage.setItem('token', data.accessToken);
-          localStorage.setItem('userName', data.auth.name);
-          localStorage.setItem('role', data.auth.role);
-          localStorage.setItem('email', data.auth.email);
-          let token = localStorage.getItem('token');
-          // console.log(token);
-          Swal.fire({
-            title: 'Đăng nhập thành công',
-            text: 'Bạn đã đăng nhập thành công!',
-            icon: 'success',
-            confirmButtonText: 'OK',
-            iconHtml: '<i class="fas fa-check-circle"></i>'
-          });
-            this.router.navigate(['/'])
-        },
 
-      );
+
+  onHandleSubmit = async () => {
+    this.isMatch = true
+    if (this.formSigninValue.valid) {
+      // console.log(this.formSigninValue);
+
+
+      this.auth.login(this.formSigninValue.value).subscribe((data) => {
+        console.log(data?.message);
+        this.toastr.info(data?.message)
+
+        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('token', data.accessToken);
+        localStorage.setItem('userName', data.auth.name);
+        localStorage.setItem('role', data.auth.role);
+        localStorage.setItem('email', data.auth.email);
+        let token = localStorage.getItem('token');
+        console.log(data.message);
+        
+
+        
+        if (data.data) {
+          this.isMatch = false
+          localStorage.setItem("user", JSON.stringify(data))
+          // console.log(resp);
+          
+          // this.user = JSON.parse(localStorage.getItem("user") as string) || null
+        }
+        this.router.navigate(['/'])
+      })
+
     }
   }
+
+
 
 }
