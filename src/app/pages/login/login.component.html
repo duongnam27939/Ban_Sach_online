@@ -6,38 +6,43 @@
                 <h2 class=" text-center text-2xl font-bold text-gray-900 dark:text-white">
                     Đăng Nhập
                 </h2>
-                <form class="mt-8 space-y-6" action="#" [formGroup]="loginForm" (ngSubmit)="onHandleSubmit()">
+                <form class="mt-8 space-y-6" action="#" [formGroup]="formSigninValue" (ngSubmit)="onHandleSubmit()">
                     <div>
                         <label for="email"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                         <input type="email" name="email" id="email" formControlName="email"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="name@company.com" required>
+                            placeholder="name@company.com">
+                        <div class="text-red-600" *ngIf="formSigninValue.get('email')?.hasError('required') && isMatch">
+                            Tên không được để trống.
+                        </div>
                     </div>
-                    <div *ngIf="checkValidate['email'].invalid &&checkValidate['email'].dirty ">
+                    <!-- <div *ngIf="checkValidate['email'].invalid &&checkValidate['email'].dirty ">
                         <div *ngIf="checkValidate['email'].getError('required')">
                             <span class="errormessage">Email không được để trống</span>
                         </div>
                         <div *ngIf="checkValidate['email'].getError('email')">
                             <span class="errormessage">Email không đúng dạng</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mật
                             khẩu</label>
                         <input type="password" name="password" id="password" placeholder="••••••••"
                             formControlName="password"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <div class="text-red-600" *ngIf="formSigninValue.get('password')?.hasError('required') && isMatch">
+                            Mật khẩu không được để trống.
+                        </div>
                     </div>
-                    <div *ngIf="checkValidate['password'].invalid &&checkValidate['password'].dirty ">
+                    <!-- <div *ngIf="checkValidate['password'].invalid &&checkValidate['password'].dirty ">
                         <div *ngIf="checkValidate['password'].getError('required')">
                             <span class="errormessage">Password không được để trống</span>
                         </div>
                         <div *ngIf="checkValidate['password'].getError('minlength')">
                             <span class="errormessage">Password trên 8 ký tự</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="flex items-start">
                         <div class="flex items-center h-5">
                             <input id="remember" aria-describedby="remember" name="remember" type="checkbox"

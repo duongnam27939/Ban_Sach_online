@@ -45,6 +45,7 @@ export class HomepagesComponent {
 
 
     })
+    this.user = JSON.parse(localStorage.getItem("user") as string)?.data
   }
   onHandleSubmit() {
     this.cate.getAllCategory().subscribe((response: any) => {
@@ -80,22 +81,26 @@ export class HomepagesComponent {
   }
 
 
-  handleAddToCart() {
-    this.user = JSON.parse(localStorage.getItem("user") as string)?.data
+  handleAddToCart(item:any) {
+    this.user = JSON.parse(localStorage.getItem("user") as string)?.auth
+    console.log(this.user);
+    
     if (!this.user) {
       this.toastr.info("Bạn cần đăng nhập để thực hiện hàng động này", "Nhắc nhở")
     }
     else {
+    console.log(item)
       const cartItem = {
         userId: this.user._id, 
-        productId: this.products._id, 
+        productId: item._id, 
         quantity: 1, 
-        total: this.products.price / 100 * (100 - this.products.price)
+        total: Number(item.price)
       }
 
       this.cartService.create(cartItem).subscribe((resp) => {
+        console.log(resp);
+        
         this.toastr.success(resp.message,"Chúc mừng")
-        this.navigate.navigate(['/cart'])
       })
       
     }

@@ -11,11 +11,12 @@ export class AuthService {
   private API = 'http://localhost:8080/api'
   constructor(private http: HttpClient) { }
 
-  signup(user: User): Observable<User> {
-    return this.http.post<User>(`${this.API}/signup`, user)
+  signup(data: any): Observable<any> {
+    return this.http.post<any>(`${this.API}/signup`, data)
   }
 
-  login(user: User): Observable<User> {
-    return this.http.post<User>(`${this.API}/login`, user)
+  login(data: any): Observable<any> {
+    return this.http.post<any>(`${this.API}/login`, data)
+    
   }
 }

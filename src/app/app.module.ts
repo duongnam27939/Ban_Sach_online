@@ -6,7 +6,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { FormsModule } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { NgxPaginationModule } from "ngx-pagination";
-import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
+import { ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
 
 
 
