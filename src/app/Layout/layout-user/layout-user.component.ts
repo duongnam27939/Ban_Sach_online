@@ -74,7 +74,6 @@ export class LayoutUserComponent {
   }
 
   onSearch() {
-    console.log(`product:`, this.searchValue);
     if (this.searchValue) {
       this.isShown = true;
       this.productService.getAllProducts().subscribe((response: any) => {
