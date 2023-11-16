@@ -3,23 +3,23 @@
         <ul>
             <li><a href="#">Trang chủ</a></li>
             <li><a href="#">Văn Học</a></li>
-            <li><a href="#">{{products.name}} </a></li>
+            <!-- <li><a  class="text-cart">{{products.name}} </a></li> -->
         </ul>
     </div>
     <div class="card">
         <div class="card-body">
             <div class=" row">
                 <div class=" box_style col-lg-5 col-md-5 col-sm-6">
-                    <div class="white-box text-center"><img
-                            [src]="products.images"
-                            width="294px" class="img-responsive"></div>
+                    <div class="white-box text-center"><img [src]="products.images" width="294px"
+                            class="img-responsive"></div>
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-6">
                     <h1 class="card-title">{{products.name}}</h1>
                     <h2 class="card-subtitle mt-1">{{products.author}} <span class="span_text">(Tác giả)</span></h2>
                     <p class="price mt-1">{{ formatCurrency(products.price) }}</p>
                     <div class="text">
-                        <p class="text_price ">Tiết Kiệm: <span class="span_price">{{ formatCurrency(products.sale) }}</span></p>
+                        <p class="text_price ">Tiết Kiệm: <span class="span_price">{{ formatCurrency(products.sale)
+                                }}</span></p>
                         <p class="text_price1  ">Tình Trang: <span class="span_price">{{products.status}}</span></p>
                         <p class="text_price1  ">Tags: <span class="span_price1">{{products.tags}}</span></p>
                     </div>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="btn_cart">
                         <button class="buttm_cart btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title=""
-                            data-original-title="Add to cart">
+                            data-original-title="Add to cart" (click)="handleAddToCart()">
                             THÊM VÀO GIỎ HÀNG
                         </button>
                         <button class="buttm_cart1 btn btn-primary btn-rounded">MUA NGAY</button>
@@ -99,23 +99,57 @@
             currentPage: page,
             totalItems: count}">
             <div class="card_flex card" style="width: 18rem;">
-                <a  [href]="'/pages-detail/'+item._id"><img
-                        [src]="item.images"
-                        class="card-img-top" alt="..."></a>
+                <a [href]="'/pages-detail/'+item._id"><img [src]="item.images" class="card-img-top" alt="..."></a>
                 <div class="card-body">
                     <h5 class="card-title1">{{item.name}}
                     </h5>
                     <p class="card-text1">{{item.author}}</p>
                     <div class="card_style d-flex ">
-                        <p class="card-price1">{{ formatCurrency(item.price) }}<del class="del_text">{{ formatCurrency(item.sale) }}</del></p>
-                        <a href="#" class="btn_cart btn btn-danger"><i class="cart_icon fa-solid fa-cart-shopping"></i></a>
+                        <p class="card-price1">{{ formatCurrency(item.price) }}<del class="del_text">{{
+                                formatCurrency(item.sale) }}</del></p>
+                        <a href="#" class="btn_cart btn btn-danger"><i
+                                class="cart_icon fa-solid fa-cart-shopping"></i></a>
                     </div>
                 </div>
             </div>
-        </div>            
+        </div>
     </div>
     <div *ngIf="similarProducts.length > tabSize">
-        <pagination-controls class="pagination" previousLabel="Trước" nextLabel="Tiếp" (pageChange)="onHandlesPage($event)"></pagination-controls>
+        <pagination-controls class="pagination" previousLabel="Trước" nextLabel="Tiếp"
+            (pageChange)="onHandlesPage($event)"></pagination-controls>
+    </div>
+
+
+    <div class="mt-[50px]">
+        <h2 class="text-[20px] mb-[32px] text-[#008340]">
+          Nhận xét từ khách hàng
+        </h2>
+        <div>
+          <form [formGroup]="formValueFeedback" (submit)="handleSearch()" action="">
+            <textarea
+            formControlName="content"
+              class="border-[1px] border-[gray] outline-none p-[12px]"
+              cols="70"
+              rows="8"
+              placeholder="Nhập nội dung"
+            >
+            </textarea>
+            <br />
+            <button class="px-[34px] py-[8px] text-white rounded bg-[#008340]">
+              Gửi đánh giá
+            </button>
+          </form>
+        </div>
       </div>
-      <div class="hr"></div>
+      <div class="mt-[32px]">
+        <div *ngFor="let item of products.feedbacks" class="mb-[12px]">
+          <h4 class="font-[500]">Khách hàng: {{item.userId.name}}</h4>
+          <p>Nội dung: {{item.content}}</p>
+        </div>
+        
+      </div>
+
+    <div class="hr"></div>
+
+
 </div>
