@@ -3,7 +3,6 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
-// import { IProducts } from 'src/app/interface/products';
 import { CartService } from 'src/app/service/cart.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { FeedbackService } from 'src/app/service/feedback.service';
@@ -29,7 +28,7 @@ export class PagesDetailComponent {
   page: number = 1;
   tabSize: number = 8;
   tabSizes: number[] = [4, 6, 8, 10, 100]
-  count: number = 1
+  count: number = 0
 
   constructor(
     private router: ActivatedRoute,
@@ -46,7 +45,6 @@ export class PagesDetailComponent {
       this.productService.getProduct(id).subscribe((data: any) => {
         this.products = data.products;
         console.log(this.products);
-        // console.log(this.products.categoryId._id);
 
         if (this.products.categoryId._id) {
           this.categoryService.getCategory(this.products.categoryId._id).subscribe((response: any) => {
@@ -117,7 +115,7 @@ export class PagesDetailComponent {
       userId: this.user._id
     }
 
-    
+
     this.feedbackService.create(newValue).subscribe((resp) => {
       this.toastr.success(resp.message)
 
@@ -149,7 +147,6 @@ export class PagesDetailComponent {
         productId: this.products._id,
         quantity: 1,
         total: Number(this.products.price)
-        // total: this.products.price / 100 * (100 - this.product.discount)
       }
 
       this.cartService.create(cartItem).subscribe((data) => {
@@ -160,8 +157,6 @@ export class PagesDetailComponent {
   }
 
 
-
-  // cart
   handleAddToCartDetail(productId: any) {
     this.user = JSON.parse(localStorage.getItem("user") as string)?.auth
     console.log(this.user);
@@ -196,7 +191,7 @@ export class PagesDetailComponent {
       name: this.user.name,
       productId: this.products._id,
       quantity: this.quantity,
-      total: this.quantity * this.products.price 
+      total: this.quantity * this.products.price
     }
 
     this.orderService.create(newOrder).subscribe((resp) => {

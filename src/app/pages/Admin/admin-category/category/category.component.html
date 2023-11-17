@@ -43,13 +43,19 @@
                 </td>
             </tr>
         </tbody>
-        <!-- <td class="px-6 py-4">
-            <select (change)="onHandleLimit($event)">
-                <option *ngFor="let size of tabSizes" [ngValue]="size">{{size}}</option>
-            </select>
-        </td> -->
     </table>
-   <div *ngIf="categorys.length > tabSize"> <pagination-controls class="pagination" previousLabel="Truoc" nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls></div>
+   <div class="flex">
+    <div *ngIf="categorys.length > tabSize"><pagination-controls class="pagination" previousLabel="Truoc"
+            nextLabel="tiep" (pageChange)="onHandlesPage($event)"></pagination-controls></div>
+
+    <div class="tabSizes px-6 py-4">
+        <select (change)="onHandleLimit($event)">
+            <option *ngFor="let size of tabSizes" [ngValue]="size">{{size}}</option>
+        </select>
+    </div>
+</div>
+
+
 </div>
 
 

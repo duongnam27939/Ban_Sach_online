@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ICategory } from 'src/app/interface/category';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from 'src/app/service/cart.service';
 import { CategoryService } from 'src/app/service/category.service';
-import { ProductsService } from 'src/app/service/products.service';
 
 @Component({
   selector: 'app-category-detail',
@@ -18,10 +18,13 @@ export class CategoryDetailComponent {
    tabSize: number = 8;
    tabSizes: number[] = [4, 6, 8, 10, 100]
    count: number = 0
+   user: any = null
 
   constructor(
     private router: ActivatedRoute,
     private categoryService: CategoryService,
+    private cartService: CartService,
+    private toastr: ToastrService
   ) {
     const id = this.router.snapshot.paramMap.get('id')!;
     // console.log(id);
@@ -72,5 +75,30 @@ export class CategoryDetailComponent {
     });
 
     return formatter.format(value);
+  }
+
+  handleAddToCartDetail(item: any) {
+    this.user = JSON.parse(localStorage.getItem("user") as string)?.auth
+    console.log(this.user);
+
+    if (!this.user) {
+      this.toastr.info("Bạn cần đăng nhập để thực hiện hàng động này", "Nhắc nhở")
+    }
+    else {
+      console.log(item)
+      const cartItem = {
+        userId: this.user._id,
+        productId: item._id,
+        quantity: 1,
+        total: Number(item.price)
+      }
+
+      this.cartService.create(cartItem).subscribe((data) => {
+        console.log(data);
+
+        this.toastr.success(data.message, "Chúc mừng")
+      })
+
+    }
   }
 }

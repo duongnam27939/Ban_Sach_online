@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IProducts } from 'src/app/interface/products';
 import { FormBuilder,Validators } from '@angular/forms';
 import { ProductsService } from 'src/app/service/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -102,7 +101,7 @@ export class ProductsEditComponent {
   onhandledSubmit() {
     this.submitValue = true
     if (this.categoryForm.valid) {
-      const product: IProducts = {
+      const product: any = {
         _id:this.products._id,
         name: this.categoryForm.value.name || '',
         price: this.categoryForm.value.price || 0,

@@ -239,6 +239,7 @@ a:hover {
 .same {
     margin-left: 110px;
     margin-top: 20px;
+    width: 1300.4px;
 }
 
 .same_text {
@@ -325,25 +326,32 @@ a:hover {
     margin-left: 550px;
 }
 
-.hr{
+.hr {
     border-bottom: 1px solid #ccc;
     margin-top: 20px;
     margin-right: 110px;
+    width: 1300px;
 }
 
-.box-title{
-  margin-left: 8px;
-  margin-bottom: 10px;
+.box-title {
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
-.text-cart{
+
+.box-title123 {
+    margin-bottom: 10px;
+}
+
+.text-cart {
     text-align: left;
     max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-#content{
+
+#content {
     width: 900px;
     height: 100px;
 }
@@ -351,4 +359,8 @@ a:hover {
 #card-body {
     text-align: left;
     width: 288px;
-  }
+}
+
+.information1{
+    width: 1000px;
+}

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 import { ProductsService } from 'src/app/service/products.service';
-import { IProducts } from 'src/app/interface/products';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -70,7 +69,7 @@ export class ProductsAddComponent {
   onhandledSubmit() {
     this.submitValue = true
     if (this.categoryForm.valid) {
-      const product: IProducts = {
+      const product: any = {
         name: this.categoryForm.value.name || '',
         price: this.categoryForm.value.price || 0,
         author: this.categoryForm.value.author || '',

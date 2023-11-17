@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/service/category.service';
 import { FormBuilder, Validators } from '@angular/forms'
 import Swal from 'sweetalert2';
-import { ICategory } from 'src/app/interface/category';
+
 
 
 @Component({
@@ -39,7 +39,7 @@ export class CategoryEditComponent {
   onhandledSubmit() {
     this.submitValue = true
     if (this.categoryForm.valid) {
-      const category: ICategory = {
+      const category: any = {
         _id: this.categorys._id,
         name: this.categoryForm.value.name || '',
       }

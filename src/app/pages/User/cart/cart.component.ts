@@ -22,9 +22,15 @@ export class CartComponent {
   totalQuantity: number = 0
   totalPrice: number = 0
 
+  allCart!: any[];
+  page: number = 1;
+  tabSize: number = 4;
+  tabSizes: number[] = [4, 6, 8, 10, 100]
+  count: number = 0
+
   constructor(private cartService: CartService, private productService: ProductsService,
-     private navigate: Router, private toastr: ToastrService,
-     private orderService: OrderService,) {
+    private navigate: Router, private toastr: ToastrService,
+    private orderService: OrderService,) {
   }
 
 
@@ -37,10 +43,32 @@ export class CartComponent {
     }
   }
 
+  onHandleSubmit() {
+    this.productService.getAllProducts().subscribe((data) => {
+      this.productList = data
+      this.allCart = data
+    })
+  }
+
+  onHandleLimit(event: any) {
+    this.tabSize = event.target.value;
+    console.log(event.target.value)
+    this.page = 1
+    this.onHandleSubmit()
+    console.log(this.onHandleSubmit());
+
+  }
+
+  onHandlesPage(event: any) {
+    this.page = event;
+    this.onHandleSubmit()
+
+  }
+
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("user") as string)?.auth
 
-    this.productService.getAllProducts().subscribe(( data ) => {
+    this.productService.getAllProducts().subscribe((data) => {
       this.productList = data
     })
 
@@ -51,7 +79,7 @@ export class CartComponent {
     this.cartService.getOne(this.user._id).subscribe(({ data }) => {
       this.cartList = data
       console.log(data);
-      
+
       console.log(this.cartList);
 
       this.handleReset()
@@ -67,7 +95,7 @@ export class CartComponent {
     }
 
     console.log(newItem);
-    
+
 
     this.cartService.create(newItem).subscribe(() => {
       this.cartService.getOne(this.user._id).subscribe(({ data }) => {
@@ -96,18 +124,18 @@ export class CartComponent {
   }
 
   handleRemove(id: string) {
-    this.cartService.delete(id).subscribe((data:any) => {
+    this.cartService.delete(id).subscribe((data: any) => {
       this.toastr.success(data.message, "Chúc mừng")
       this.cartService.getOne(this.user._id).subscribe(({ data }) => {
         this.cartList = data
         console.log(data);
-        
+
         this.handleReset()
       })
     })
   }
 
-  
+
 
   formatCurrency(value: number): string {
     const formatter = new Intl.NumberFormat('vi-VN', {

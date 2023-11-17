@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IProducts } from 'src/app/interface/products';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from 'src/app/service/cart.service';
 import { ProductsService } from 'src/app/service/products.service';
 
 @Component({
@@ -10,20 +11,21 @@ import { ProductsService } from 'src/app/service/products.service';
 })
 export class ProductsSearchComponent {
   searchValue: string = '';
-  products: IProducts[] = [];
-
-  allProducts!: IProducts[];
-  // limt +Page
+  products: any[] = [];
+  allProducts!: any[];
   page: number = 1;
   tabSize: number = 8;
   tabSizes: number[] = [4, 6, 8, 10, 100]
   count: number = 0
+  user: any = null
   
   noResultsFound: boolean = false;
 
   constructor(
     private productService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -86,5 +88,30 @@ export class ProductsSearchComponent {
     });
 
     return formatter.format(value);
+  }
+
+  handleAddToCartSearch(item: any) {
+    this.user = JSON.parse(localStorage.getItem("user") as string)?.auth
+    console.log(this.user);
+
+    if (!this.user) {
+      this.toastr.info("Bạn cần đăng nhập để thực hiện hàng động này", "Nhắc nhở")
+    }
+    else {
+      console.log(item)
+      const cartItem = {
+        userId: this.user._id,
+        productId: item._id,
+        quantity: 1,
+        total: Number(item.price)
+      }
+
+      this.cartService.create(cartItem).subscribe((data) => {
+        console.log(data);
+
+        this.toastr.success(data.message, "Chúc mừng")
+      })
+
+    }
   }
 }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IProducts } from 'src/app/interface/products';
 import { ProductsService } from 'src/app/service/products.service';
 import Swal from 'sweetalert2';
 
@@ -10,12 +9,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
-  products!: IProducts[];
+  products!: any[];
   category!: any[];
   isShown: boolean = true;
   searchValue: any;
   
-  allProducts!: IProducts[];
+  allProducts!: any[];
   // limt +Page
   page: number = 1;
   tabSize: number = 4;

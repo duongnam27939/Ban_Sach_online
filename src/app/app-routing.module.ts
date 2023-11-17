@@ -17,7 +17,7 @@ import { ProductsEditComponent } from './pages/Admin/admin-products/products-edi
 import { ProductsSearchComponent } from './pages/User/products-search/products-search.component';
 import { SignupComponent } from './pages/User/signup/signup.component';
 import { UserEditComponent } from './pages/Admin/admin-user/user-edit/user-edit.component';
-import { ProductsDetailadminComponent } from './pages/User/products-detailadmin/products-detailadmin.component';
+import { ProductsDetailadminComponent } from './pages/Admin/admin-products/products-detailadmin/products-detailadmin.component';
 import { DashboardComponent } from './pages/Admin/admin-dashboard/dashboard/dashboard.component';
 import { AdminOrderComponent } from './pages/Admin/order-admin/admin-order/admin-order.component';
 

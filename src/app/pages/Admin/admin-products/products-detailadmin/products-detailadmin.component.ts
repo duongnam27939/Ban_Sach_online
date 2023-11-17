@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IProducts } from 'src/app/interface/products';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductsService } from 'src/app/service/products.service';
 
@@ -10,7 +9,7 @@ import { ProductsService } from 'src/app/service/products.service';
   styleUrls: ['./products-detailadmin.component.scss']
 })
 export class ProductsDetailadminComponent {
-  products!: IProducts;
+  products!: any;
   category!: string;
 
   constructor(

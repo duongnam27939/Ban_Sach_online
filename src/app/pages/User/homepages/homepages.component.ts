@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ICategory } from 'src/app/interface/category';
 import { CartService } from 'src/app/service/cart.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductsService } from 'src/app/service/products.service';
@@ -16,7 +15,7 @@ export class HomepagesComponent {
 
   products: any = null
   category: any= null
-  allCategory!: ICategory[];
+  allCategory!: any[];
   user: any = null
   cartItem: any = null
   quantity: number = 1
@@ -24,7 +23,7 @@ export class HomepagesComponent {
 
 
   page: number = 1;
-  tabSize: number = 8;
+  tabSize: number = 12;
   tabSizes: number[] = [4, 6, 8, 10, 100]
   count: number = 0
   constructor(private productsSevri: ProductsService,
