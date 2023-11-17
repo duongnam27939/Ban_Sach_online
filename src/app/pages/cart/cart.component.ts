@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/service/cart.service';
+import { OrderService } from 'src/app/service/order.service';
 import { ProductsService } from 'src/app/service/products.service';
 
 
@@ -22,7 +23,8 @@ export class CartComponent {
   totalPrice: number = 0
 
   constructor(private cartService: CartService, private productService: ProductsService,
-     private navigate: Router, private toastr: ToastrService,) {
+     private navigate: Router, private toastr: ToastrService,
+     private orderService: OrderService,) {
   }
 
 
@@ -115,6 +117,25 @@ export class CartComponent {
     });
 
     return formatter.format(value);
+  }
+
+  handleOrder = () => {
+    if (this.cartList.cartItems.length == 0) {
+      this.toastr.info("Giỏ hàng của bạn đang trống.", "Cảnh báo")
+      return
+    }
+    const newOrder = {
+      userId: this.user._id,
+      phone: this.user.phone,
+      address: this.user.address,
+      name: this.user.name,
+    }
+
+    this.orderService.create(newOrder).subscribe((resp) => {
+      this.toastr.success(resp.message)
+      this.navigate.navigate(['/'])
+    })
+
   }
 
 

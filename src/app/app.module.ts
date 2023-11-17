@@ -31,6 +31,8 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { ProductsDetailadminComponent } from './pages/products-detailadmin/products-detailadmin.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AdminOrderComponent } from './pages/admin-order/admin-order.component';
 
 
 
@@ -56,6 +58,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     UserEditComponent,
     ProductsDetailadminComponent,
     DashboardComponent,
+    AdminOrderComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +71,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     NgxPaginationModule,
     ToastrModule.forRoot(),
     ToastNoAnimationModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
