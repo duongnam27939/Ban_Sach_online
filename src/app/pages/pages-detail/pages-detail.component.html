@@ -107,8 +107,8 @@
                     <div class="card_style d-flex ">
                         <p class="card-price1">{{ formatCurrency(item.price) }}<del class="del_text">{{
                                 formatCurrency(item.sale) }}</del></p>
-                        <a href="#" class="btn_cart btn btn-danger"><i
-                                class="cart_icon fa-solid fa-cart-shopping"></i></a>
+                        <button href="#" class="btn_cart btn btn-danger"><i
+                                class="cart_icon fa-solid fa-cart-shopping" (click)="handleAddToCartDetail(item)"></i></button>
                     </div>
                 </div>
             </div>
@@ -122,32 +122,27 @@
 
     <div class="mt-[50px]">
         <h2 class="text-[20px] mb-[32px] text-[#008340]">
-          Nhận xét từ khách hàng
+            Nhận xét từ khách hàng
         </h2>
         <div>
-          <form [formGroup]="formValueFeedback" (submit)="handleSearch()" action="">
-            <textarea
-            formControlName="content"
-              class="border-[1px] border-[gray] outline-none p-[12px]"
-              cols="70"
-              rows="8"
-              placeholder="Nhập nội dung"
-            >
+            <form [formGroup]="formValueFeedback" (submit)="handleSearch()" action="">
+                <textarea formControlName="content" class="border-[1px] border-[gray] outline-none p-[12px]" cols="70"
+                    rows="8" placeholder="Nhập nội dung">
             </textarea>
-            <br />
-            <button class="px-[34px] py-[8px] text-white rounded bg-[#008340]">
-              Gửi đánh giá
-            </button>
-          </form>
+                <br />
+                <button class="px-[34px] py-[8px] text-white rounded bg-[#008340]">
+                    Gửi đánh giá
+                </button>
+            </form>
         </div>
-      </div>
-      <div class="mt-[32px]">
+    </div>
+    <div class="mt-[32px]">
         <div *ngFor="let item of products.feedbacks" class="mb-[12px]">
-          <h4 class="font-[500]">Khách hàng: {{item.userId.name}}</h4>
-          <p>Nội dung: {{item.content}}</p>
+            <h4 class="font-[500]">Khách hàng: {{item.userId.name}}</h4>
+            <p>Nội dung: {{item.content}}</p>
         </div>
-        
-      </div>
+
+    </div>
 
     <div class="hr"></div>
 

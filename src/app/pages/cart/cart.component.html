@@ -31,18 +31,17 @@
         </tbody>
     </table>
     <div style="padding-top: 30px; width: 100%; text-align: center;">
-        Tổng thanh toán: <span style="font-size: 20px;">{{ formatCurrency(totalPrice) }}</span>
-        <a routerLink="/" class=".text_left btn btn-success">Thanh toán</a>
+        Tổng thanh toán: <span class="text_left" style="font-size: 20px;">{{ formatCurrency(totalPrice) }}</span>
+        <a routerLink="/" class="text_left btn btn-success">Thanh toán</a>
     </div>
 </ng-container>
 
 <ng-template #emptyCart>
     <div style="text-align: center; margin: 10px 0px 40px 0px; background-color: rgb(226, 167, 167);">
-        Giỏ hàng rỗng, <a href="/" style="color: rgb(70, 70, 211); text-decoration: underline;">mua hàng tại đây!</a>
+        Giỏ hàng rỗng,  <a href="/" style="color: rgb(70, 70, 211); text-decoration: underline;">mua hàng tại đây!</a>
     </div>
 </ng-template>
 
 <div style="text-align: center;margin: 16px 0px;">
     <a routerLink="/" class="text_left btn btn-primary">Tiếp tục mua hàng</a>
-    <button class="cart_again btn btn-danger">Xóa tất cả</button>
 </div>
