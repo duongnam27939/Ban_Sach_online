@@ -1,5 +1,5 @@
 <section class="sigup">
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div>
             <div
                 class="container w-full  lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
@@ -50,6 +50,26 @@
                         <div class="text-red-600"
                             *ngIf="formSignupValue.get('confirmPassword')?.hasError('required') && isMatch">
                             Nhập lại mật khẩu không được để trống.
+                        </div>
+                    </div>
+                    <div>
+                        <label for="address"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Địa chỉ</label>
+                        <input type="address" name="address" id="address" formControlName="address"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="name">
+                        <div class="text-red-600" *ngIf="formSignupValue.get('address')?.hasError('required') && isMatch">
+                            Trường này không được để trống.
+                        </div>
+                    </div>
+                    <div>
+                        <label for="phone"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Số điện thoại</label>
+                        <input type="phone" name="phone" id="phone" formControlName="phone"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="name">
+                        <div class="text-red-600" *ngIf="formSignupValue.get('phone')?.hasError('required') && isMatch">
+                            Trường này không được để trống.
                         </div>
                     </div>
                     <div class="flex items-start">
