@@ -18,13 +18,13 @@ export class PagesDetailComponent {
   category!: string;
   similarProducts: IProducts[] = [];
   user: any = null
-  content!: string 
+  content!: string
 
   allProducts!: IProducts[];
   page: number = 1;
   tabSize: number = 8;
   tabSizes: number[] = [4, 6, 8, 10, 100]
-  count: number = 0
+  count: number = 1
 
   constructor(
     private router: ActivatedRoute,
@@ -94,9 +94,6 @@ export class PagesDetailComponent {
     content: [""],
   })
 
-  handleThem = () => {
-    this.content = this.content + 1
-  }
 
   handleSearch() {
     this.user = JSON.parse(localStorage.getItem("user") as string)?.auth
@@ -114,20 +111,18 @@ export class PagesDetailComponent {
       userId: this.user._id
     }
 
+    
     this.feedbackService.create(newValue).subscribe((resp) => {
-      this.toastr.success(resp.message, "Chúc mừng")
-      console.log("resp:",resp);
-      
+      this.toastr.success(resp.message)
+
+      console.log("resp:", resp.message);
+
       this.formValueFeedback.reset();
       this.router.params.subscribe(({ id }) => {
         if (id) {
-          this.productService.getProduct(id).subscribe(({ data }) => {
-            this.products = data
-            console.log("commets:",this.products);
-            console.log("prroducts:",this.products);
-            this.handleThem()
-            
-            
+          this.productService.getProduct(id).subscribe((data: any) => {
+            this.products = data.products;
+            console.log("commets:", this.products);
           })
         }
 
@@ -135,33 +130,6 @@ export class PagesDetailComponent {
     })
 
   }
-
-  
-  // cart
-  // handleAddToCart(productId:any) {
-  //   this.user = JSON.parse(localStorage.getItem("user") as string)?.auth
-  //   console.log(this.user);
-    
-  //   if (!this.user) {
-  //     this.toastr.info("Bạn cần đăng nhập để thực hiện hàng động này", "Nhắc nhở")
-  //   }
-  //   else {
-  //   console.log(productId)
-  //     const cartItem = {
-  //       userId: this.user._id, 
-  //       productId: productId._id, 
-  //       quantity: 1, 
-  //       total: Number(productId.price)
-  //     }
-
-  //     this.cartService.create(cartItem).subscribe((resp) => {
-  //       console.log(resp);
-        
-  //       this.toastr.success(resp.message,"Chúc mừng")
-  //     })
-      
-  //   }
-  // }
 
 
   handleAddToCart() {
@@ -171,17 +139,45 @@ export class PagesDetailComponent {
     }
     else {
       const cartItem = {
-        userId: this.user._id, 
-        productId: this.products._id, 
-        quantity: 1, 
+        userId: this.user._id,
+        productId: this.products._id,
+        quantity: 1,
         total: Number(this.products.price)
         // total: this.products.price / 100 * (100 - this.product.discount)
       }
 
-      this.cartService.create(cartItem).subscribe((resp) => {
-        this.toastr.success(resp.message,"Chúc mừng")
+      this.cartService.create(cartItem).subscribe((data) => {
+        this.toastr.success(data.message, "Chúc mừng")
       })
-      
+
+    }
+  }
+
+
+
+  // cart
+  handleAddToCartDetail(productId: any) {
+    this.user = JSON.parse(localStorage.getItem("user") as string)?.auth
+    console.log(this.user);
+
+    if (!this.user) {
+      this.toastr.info("Bạn cần đăng nhập để thực hiện hàng động này", "Nhắc nhở")
+    }
+    else {
+      console.log(productId)
+      const cartItem = {
+        userId: this.user._id,
+        productId: productId._id,
+        quantity: 1,
+        total: Number(productId.price)
+      }
+
+      this.cartService.create(cartItem).subscribe((data) => {
+        console.log(data);
+
+        this.toastr.success(data.message, "Chúc mừng")
+      })
+
     }
   }
 }
