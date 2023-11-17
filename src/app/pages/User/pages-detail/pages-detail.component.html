@@ -3,7 +3,7 @@
         <ul>
             <li><a href="#">Trang chủ</a></li>
             <li><a href="#">Văn Học</a></li>
-            <li><a  class="text-cart">{{products.categoryId.name}} </a></li>
+            <li><a class="text-cart">{{products.categoryId.name}} </a></li>
         </ul>
     </div>
     <div class="card">
@@ -101,7 +101,7 @@
             totalItems: count}">
             <div class="card_flex card" style="width: 18rem;">
                 <a [href]="'/pages-detail/'+item._id"><img [src]="item.images" class="card-img-top" alt="..."></a>
-                <div class="card-body">
+                <div class="card-body"id="card-body">
                     <h5 class="card-title1">{{item.name}}
                     </h5>
                     <p class="card-text1">{{item.author}}</p>
@@ -109,7 +109,7 @@
                         <p class="card-price1">{{ formatCurrency(item.price) }}<del class="del_text">{{
                                 formatCurrency(item.sale) }}</del></p>
                         <button href="#" class="btn_cart btn btn-danger"><i class="cart_icon fa-solid fa-cart-shopping"
-                                (click)="handleAddToCartDetail(item)"></i></button>
+                            (click)="handleAddToCartDetail(item)"></i></button>
                     </div>
                 </div>
             </div>
@@ -127,8 +127,8 @@
         </h2>
         <div>
             <form [formGroup]="formValueFeedback" (submit)="handleSearch()" action="">
-                <textarea formControlName="content" class="border-[1px] border-[gray] outline-none p-[12px]" cols="70"
-                    rows="8" placeholder="Nhập nội dung">
+                <textarea formControlName="content" class="border-[1px] border-[gray] outline-none p-[12px]"
+                    id="content" cols="70" rows="8" placeholder="Nhập nội dung">
             </textarea>
                 <br />
                 <button class="px-[34px] py-[8px] text-white rounded bg-[#008340]">
@@ -154,7 +154,7 @@
     <div class="flex items-center justify-center h-full">
         <div class="bg-white w-[600px] rounded overflow-hidden relative">
             <span (click)="handleClose()" class="cursor-pointer absolute right-[12px] top-[6px]">
-                <fa-icon class="text-white hover:text-red-600 " [icon]="closeIcon"  />
+                <fa-icon class="text-white hover:text-red-600 " [icon]="closeIcon" />
             </span>
             <h1 class="pl-[24px] py-[12px] bg-[#087b44] text-white text-[18px]">
                 Sản phẩm

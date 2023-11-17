@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICategory } from 'src/app/interface/category';
-import { IProducts } from 'src/app/interface/products';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductsService } from 'src/app/service/products.service';
 
@@ -14,7 +13,7 @@ export class CategoryDetailComponent {
    category!:any;
    products!:any;
 
-   allCategory!: IProducts[];
+   allCategory!: any[];
    page: number = 1;
    tabSize: number = 8;
    tabSizes: number[] = [4, 6, 8, 10, 100]

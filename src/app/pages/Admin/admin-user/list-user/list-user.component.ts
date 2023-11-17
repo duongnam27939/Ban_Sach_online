@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { User } from 'src/app/interface/auth';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
 
@@ -9,11 +8,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./list-user.component.scss']
 })
 export class ListUserComponent {
-  user!: User[];
+  user!: any[];
   isShown: boolean = true;
   searchValue: any;
-
-  allUsers!: User[]
+  allUsers!: any[]
   //  listmist + page
   page: number = 1;
   tabSize: number = 6;

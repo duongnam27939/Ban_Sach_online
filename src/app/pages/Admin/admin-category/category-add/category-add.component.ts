@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
-import { ICategory } from 'src/app/interface/category';
 import { CategoryService } from 'src/app/service/category.service';
 import Swal from 'sweetalert2';
 
@@ -12,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class CategoryAddComponent {
   submitValue: boolean = false;
-  category!: ICategory;
+  category!: any;
 
   categoryForm = this.formBuilder.group({
     name: ['', [Validators.required]]
@@ -25,7 +24,7 @@ export class CategoryAddComponent {
   onhandledSubmit() {
     this.submitValue = true
     if (this.categoryForm.valid) {
-      const category: ICategory = {
+      const category: any = {
         name: this.categoryForm.value.name || ''
       }
       this.cate.categoryAdd(category).subscribe((category) => {

@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
-import { IProducts } from 'src/app/interface/products';
+// import { IProducts } from 'src/app/interface/products';
 import { CartService } from 'src/app/service/cart.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { FeedbackService } from 'src/app/service/feedback.service';
@@ -18,14 +18,14 @@ import { ProductsService } from 'src/app/service/products.service';
 export class PagesDetailComponent {
   products: any;
   category!: string;
-  similarProducts: IProducts[] = [];
+  similarProducts: any[] = [];
   user: any = null
   content!: string
   quantity: number = 1
   isShowModal: boolean = false
   closeIcon = faXmark
 
-  allProducts!: IProducts[];
+  allProducts!: any[];
   page: number = 1;
   tabSize: number = 8;
   tabSizes: number[] = [4, 6, 8, 10, 100]

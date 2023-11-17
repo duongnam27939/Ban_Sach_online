@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, } from '@angular/common/http';
 import { Observable } from 'rxjs'
-import { ICategory } from '../interface/category';
-import { IProducts } from '../interface/products';
 
 
 @Injectable({
@@ -22,32 +20,32 @@ export class CategoryService {
     private http: HttpClient
   ) { }
 
-  categoryAdd(category: ICategory): Observable<ICategory> {
+  categoryAdd(category: any): Observable<any> {
     const url = `${this.API}/category`;
-    return this.http.post<ICategory>(url, category, this.httpOptions)
+    return this.http.post<any>(url, category, this.httpOptions)
   }
 
-  categoryUpdate(category: ICategory): Observable<ICategory> {
+  categoryUpdate(category: any): Observable<any> {
     const url = `${this.API}/category/${category._id}`;
-    return this.http.patch<ICategory>(url, category, this.httpOptions);
+    return this.http.patch<any>(url, category, this.httpOptions);
   }
-  getCategory(_id: string | null): Observable<ICategory> {
+  getCategory(_id: string | null): Observable<any> {
     const url = `${this.API}/category/${_id}`
-    return this.http.get<ICategory>(url, this.httpOptions)
+    return this.http.get<any>(url, this.httpOptions)
   }
 
-  getAllCategory(): Observable<ICategory[]> {
+  getAllCategory(): Observable<any[]> {
     const url = `${this.API}/category`
-    return this.http.get<ICategory[]>(url, this.httpOptions)
+    return this.http.get<any[]>(url, this.httpOptions)
   }
 
-  deleteCategory(_id: string | null): Observable<ICategory> {
+  deleteCategory(_id: string | null): Observable<any> {
     const url = `${this.API}/category/${_id}`
-    return this.http.delete<ICategory>(url, this.httpOptions)
+    return this.http.delete<any>(url, this.httpOptions)
   }
 
-  getproductByCategory(_id: string): Observable<IProducts> {
+  getproductByCategory(_id: string): Observable<any> {
     const url = `${this.API}/category/${_id}`;
-    return this.http.get<IProducts>(url, this.httpOptions);
+    return this.http.get<any>(url, this.httpOptions);
   }
 }

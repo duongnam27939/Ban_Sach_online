@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'; import { ICategory } from 'src/app/interface/category';
+import { ActivatedRoute, Router } from '@angular/router'; 
+
 ;
 import { CategoryService } from 'src/app/service/category.service';
 import Swal from 'sweetalert2';
@@ -10,11 +11,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent {
-  categorys!: ICategory[];
+  categorys!: any[];
   isShown: boolean = true;
   searchValue: any;
 
-  allCategory!: ICategory[];
+  allCategory!: any[];
   //  listmist + page
   page : number = 1
   tabSize : number = 3;

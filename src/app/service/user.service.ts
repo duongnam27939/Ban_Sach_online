@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../interface/auth';
+
 
 
 @Injectable({
@@ -14,23 +14,23 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  geAlltUser(): Observable<User[]> {
+  geAlltUser(): Observable<any[]> {
     const url = `${this.API}/user`
-    return this.http.get<User[]>(url)
+    return this.http.get<any[]>(url)
   }
 
-  getByIduser(_id: string | null): Observable<User> {
+  getByIduser(_id: string | null): Observable<any> {
     const url = `${this.API}/user/${_id}`
-    return this.http.get<User>(url)
+    return this.http.get<any>(url)
   }
 
-  removeUser(_id: string | null): Observable<User> {
+  removeUser(_id: string | null): Observable<any> {
     const url = `${this.API}/user/${_id}`
-    return this.http.delete<User>(url)
+    return this.http.delete<any>(url)
   }
 
-  updateUser(user: User): Observable<User> {
+  updateUser(user: any): Observable<any> {
     const url = `${this.API}/user/${user._id}`
-    return this.http.put<User>(url, user)
+    return this.http.put<any>(url, user)
   }
 }

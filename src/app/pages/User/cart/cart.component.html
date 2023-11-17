@@ -34,6 +34,9 @@
         Tổng thanh toán: <span class="text_left" style="font-size: 20px;">{{ formatCurrency(totalPrice) }}</span>
         <button (click)="handleOrder()" class="text_left btn btn-success">Thanh toán</button>
     </div>
+    <div style="text-align: center;margin: 16px 0px;">
+        <a routerLink="/" class="text_left btn btn-primary">Tiếp tục mua hàng</a>
+    </div>
 </ng-container>
 
 <ng-template #emptyCart>
@@ -41,7 +44,3 @@
         Giỏ hàng rỗng,  <a href="/" style="color: rgb(70, 70, 211); text-decoration: underline;">mua hàng tại đây!</a>
     </div>
 </ng-template>
-
-<div style="text-align: center;margin: 16px 0px;">
-    <a routerLink="/" class="text_left btn btn-primary">Tiếp tục mua hàng</a>
-</div>

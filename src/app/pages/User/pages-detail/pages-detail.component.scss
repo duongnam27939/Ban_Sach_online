@@ -257,6 +257,7 @@ a:hover {
 
 
 .card-title1 {
+    text-align: left;
     font-size: 15px;
     height: 37px;
     display: -webkit-box;
@@ -342,3 +343,12 @@ a:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+#content{
+    width: 900px;
+    height: 100px;
+}
+
+#card-body {
+    text-align: left;
+    width: 288px;
+  }

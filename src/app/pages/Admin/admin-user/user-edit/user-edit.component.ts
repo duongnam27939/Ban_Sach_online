@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/interface/auth';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
 
@@ -45,7 +44,7 @@ export class UserEditComponent {
   onHandleSubmit() {
     this.submitValue = true;
     if (this.userForm.valid) {
-      const user: User = {
+      const user: any = {
         _id: this.user._id,
         name: this.userForm.value.name || '',
         email: this.userForm.value.email || '',
