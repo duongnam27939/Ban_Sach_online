@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { IProducts } from 'src/app/interface/products';
 import { CartService } from 'src/app/service/cart.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { FeedbackService } from 'src/app/service/feedback.service';
+import { OrderService } from 'src/app/service/order.service';
 import { ProductsService } from 'src/app/service/products.service';
 
 @Component({
@@ -19,6 +21,9 @@ export class PagesDetailComponent {
   similarProducts: IProducts[] = [];
   user: any = null
   content!: string
+  quantity: number = 1
+  isShowModal: boolean = false
+  closeIcon = faXmark
 
   allProducts!: IProducts[];
   page: number = 1;
@@ -33,7 +38,8 @@ export class PagesDetailComponent {
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private feedbackService: FeedbackService,
-    private cartService: CartService
+    private cartService: CartService,
+    private orderService: OrderService
   ) {
     const id = this.router.snapshot.paramMap.get('id');
     if (id) {
@@ -180,4 +186,48 @@ export class PagesDetailComponent {
 
     }
   }
+
+
+  handleOrder = () => {
+    const newOrder = {
+      userId: this.user._id,
+      phone: this.user.phone,
+      address: this.user.address,
+      name: this.user.name,
+      productId: this.products._id,
+      quantity: this.quantity,
+      total: this.quantity * this.products.price 
+    }
+
+    this.orderService.create(newOrder).subscribe((resp) => {
+      this.toastr.success(resp.message)
+      this.isShowModal = false
+    })
+  }
+
+  handleShowModal() {
+    this.user = JSON.parse(localStorage.getItem("user") as string)?.auth
+    if (!this.user) {
+      this.toastr.info("Bạn cần đăng nhập để thực hiện hàng động này", "Nhắc nhở")
+    }
+    else {
+      this.isShowModal = true
+    }
+  }
+
+  handleClose() {
+    this.isShowModal = false
+  }
+
+  handleThem = () => {
+    this.quantity = this.quantity + 1
+  }
+
+  handleBot = () => {
+    if (this.quantity > 1) {
+      this.quantity = this.quantity - 1
+    }
+
+  }
+
 }

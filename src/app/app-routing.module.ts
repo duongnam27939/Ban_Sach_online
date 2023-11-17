@@ -19,6 +19,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { ProductsDetailadminComponent } from './pages/products-detailadmin/products-detailadmin.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AdminOrderComponent } from './pages/admin-order/admin-order.component';
 
 
 
@@ -45,7 +46,8 @@ const routes: Routes = [
       { path: 'user', component: ListUserComponent },
       { path: 'user/:id/edit', component: UserEditComponent },
       {path:"products/:id",component: ProductsDetailadminComponent},
-      {path: "dashboard", component: DashboardComponent}
+      {path: "dashboard", component: DashboardComponent},
+      { path: "order", component:AdminOrderComponent}
 
     ]
   },

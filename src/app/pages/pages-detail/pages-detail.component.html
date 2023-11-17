@@ -3,7 +3,7 @@
         <ul>
             <li><a href="#">Trang chủ</a></li>
             <li><a href="#">Văn Học</a></li>
-            <!-- <li><a  class="text-cart">{{products.name}} </a></li> -->
+            <li><a  class="text-cart">{{products.categoryId.name}} </a></li>
         </ul>
     </div>
     <div class="card">
@@ -38,7 +38,8 @@
                             data-original-title="Add to cart" (click)="handleAddToCart()">
                             THÊM VÀO GIỎ HÀNG
                         </button>
-                        <button class="buttm_cart1 btn btn-primary btn-rounded">MUA NGAY</button>
+                        <button class="buttm_cart1 btn btn-primary btn-rounded" (click)="handleShowModal()">MUA
+                            NGAY</button>
                     </div>
                     <div class="call">
                         <p class="call-1">Gọi dặt hàng: <span class="call-2">(028) 3820 7153 </span></p>
@@ -107,8 +108,8 @@
                     <div class="card_style d-flex ">
                         <p class="card-price1">{{ formatCurrency(item.price) }}<del class="del_text">{{
                                 formatCurrency(item.sale) }}</del></p>
-                        <button href="#" class="btn_cart btn btn-danger"><i
-                                class="cart_icon fa-solid fa-cart-shopping" (click)="handleAddToCartDetail(item)"></i></button>
+                        <button href="#" class="btn_cart btn btn-danger"><i class="cart_icon fa-solid fa-cart-shopping"
+                                (click)="handleAddToCartDetail(item)"></i></button>
                     </div>
                 </div>
             </div>
@@ -147,4 +148,80 @@
     <div class="hr"></div>
 
 
+</div>
+
+<div *ngIf="isShowModal" class="fixed top-0 left-0 right-0 bottom-0 bg-[#00000070]">
+    <div class="flex items-center justify-center h-full">
+        <div class="bg-white w-[600px] rounded overflow-hidden relative">
+            <span (click)="handleClose()" class="cursor-pointer absolute right-[12px] top-[6px]">
+                <fa-icon class="text-white hover:text-red-600 " [icon]="closeIcon"  />
+            </span>
+            <h1 class="pl-[24px] py-[12px] bg-[#087b44] text-white text-[18px]">
+                Sản phẩm
+            </h1>
+            <div class="flex justify-between my-[24px] mx-[24px]">
+                <div class="w-[45px] h-[63px] overflow-hidden">
+                    <img [src]="products?.images" alt="" />
+                </div>
+                <div class="flex-1 ml-[24px]">
+                    <h6 class="text-[#66645c] max-w-[500px] text-[14px] font-[400]">
+                        {{products?.name}}
+                    </h6>
+                    <div>
+                        <button (click)="handleBot()" class="px-[12px] py-[1px] rounded border-[1px] min-w-[32px]">
+                            -
+                        </button>
+                        <input type="number" disabled [value]="quantity"
+                            class="mx-[6px] w-[50px] pl-[12px] rounded bg-[#eeeeee] text-align:center" />
+                        <button (click)="handleThem()" class="px-[12px] py-[1px] rounded border-[1px] min-w-[32px]">
+                            +
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-col items-end">
+                    <p class="text-[#66645c] font-[600]">
+                        <span>{{quantity}}</span> x <span>{{products.price | number}}đ</span>
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="w-full border-[1px] rounded overflow-hidden mt-[32px]">
+                    <h2 class="pl-[24px] py-[8px] text-[16px] text-white bg-[#117c47]">
+                        Thông tin khách hàng
+                    </h2>
+                    <div class="p-[24px]">
+                        <div class="flex justify-between flex-col">
+                            <label class="mr-[12px]">Họ tên</label>
+                            <input [(ngModel)]="user.name"
+                                class="flex-1 border-[1px] border-[gray] border-solid rounded pl-[12px]" type="text"
+                                placeholder="Tên người nhận" />
+                        </div>
+
+                        <div class="flex justify-between flex-col">
+                            <label class="mr-[12px]">Số điện thoại</label>
+                            <input [(ngModel)]="user.phone"
+                                class="flex-1 border-[1px] border-[gray] border-solid rounded pl-[12px]" type="text"
+                                placeholder="Số điện thoại người nhận" />
+                        </div>
+
+                        <div class="flex justify-between flex-col">
+                            <label class="mr-[12px]">Địa chỉ nhận hàng</label>
+                            <textarea [(ngModel)]="user.address" name="" id="" cols="10" rows="5"
+                                class="flex-1 border-[1px] border-[gray] border-solid rounded pl-[12px]"
+                                placeholder="Địa chỉ nhận hàng"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="my-[12px] flex items-center justify-end mx-[24px]">
+                <button (click)="handleClose()" class="px-[12px] py-[4px] rounded bg-red-600 text-white">
+                    Hủy
+                </button>
+
+                <button (click)="handleOrder()" class="px-[12px] py-[4px] rounded bg-yellow-600 ml-[12px] text-white">
+                    Thanh toán
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
